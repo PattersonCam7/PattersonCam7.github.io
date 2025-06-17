@@ -93,6 +93,45 @@ section h2 {
   border-radius: 6px;
 }
 
+.carousel {
+  position: relative;
+  max-width: 100%;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.carousel-image {
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.carousel-image.active {
+  display: block;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 18px;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+
 /* Contact Links */
 #contact a {
   color: #007acc;
