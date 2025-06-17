@@ -6,6 +6,23 @@
   <title>Cameron Patterson - Game Programmer Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
+  <script>
+  const carouselIndexes = {};
+
+  function scrollImages(projectName, direction) {
+    const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
+    const images = carousel.querySelectorAll('.carousel-image');
+    if (!carouselIndexes[projectName]) {
+      carouselIndexes[projectName] = 0;
+    }
+
+    images[carouselIndexes[projectName]].classList.remove('active');
+    carouselIndexes[projectName] = (carouselIndexes[projectName] + direction + images.length) % images.length;
+    images[carouselIndexes[projectName]].classList.add('active');
+  }
+</script>
+
 <body>
   <div class="container">
     <h1>Cameron Patterson</h1>
