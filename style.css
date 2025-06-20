@@ -275,3 +275,54 @@ a[href="index.html"]:hover {
   text-decoration: underline;
 }
 
+/* Accordion / Collapsible Project Styles to match your projects style */
+
+.project-header {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1.4em;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: 15px 0;
+  margin-bottom: 0;
+  color: #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.project-header:hover,
+.project-header.active {
+  color: #007acc;
+  background-color: #f0f8ff;
+}
+
+/* Arrow indicator for collapsible */
+.project-header::after {
+  content: '▼';
+  font-size: 0.8em;
+  color: #007acc;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.project-header.active::after {
+  transform: rotate(-180deg);
+}
+
+.project-content {
+  display: none;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  color: #333;
+}
+
+.project-content.active {
+  display: block;
+}
