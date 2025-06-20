@@ -83,6 +83,7 @@ nav a:focus {
 /* Sidebar styles */
 .sidebar-nav {
   position: relative;
+  flex-shrink: 0; /* prevent sidebar from shrinking */
   top: 2rem; /* adjust this to match the distance from viewport top to first h3 */
   width: 220px;
   max-height: calc(100vh - 4rem);
