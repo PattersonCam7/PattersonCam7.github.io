@@ -44,4 +44,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Auto-open project if URL has hash on page load
+  const hash = window.location.hash;
+  if (hash) {
+    // Remove the '#' to get the ID
+    const targetId = hash.substring(1);
+    const targetProject = document.getElementById(targetId);
+    if (targetProject) {
+      // Get the header and content elements inside the project div
+      const header = targetProject.querySelector('.project-header');
+      const content = targetProject.querySelector('.project-content');
+      const icon = header.querySelector('.toggle-icon');
+
+      // If not already active, toggle classes and icon
+      if (content && !content.classList.contains('active')) {
+        content.classList.add('active');
+        header.classList.add('active');
+        if (icon) {
+          icon.textContent = '▲'; // open icon
+        }
+      }
+
+      // Scroll smoothly to the project
+      targetProject.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 });
