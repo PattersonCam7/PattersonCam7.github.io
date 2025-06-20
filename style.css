@@ -77,24 +77,27 @@ nav a:focus {
   display: flex;
   gap: 2rem; /* space between sidebar and main */
   min-height: 100vh;
+  align-items: flex-start; /* align items to the top */
 }
 
 /* Sidebar styles */
-.side-nav {
+.sidebar-nav {
   position: sticky;
-  top: 20px;
-  width: 200px;
-  height: max-content;
-  max-height: calc(100vh - 40px);
+  top: 2rem; /* adjust this to match the distance from viewport top to first h3 */
+  width: 220px;
+  max-height: calc(100vh - 4rem);
   overflow-y: auto;
   border: 1px solid #ddd;
   padding: 1rem;
   background: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
+/* Sidebar list */
 .sidebar-nav ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .sidebar-nav li + li {
@@ -118,13 +121,13 @@ nav a:focus {
   outline: none;
 }
 
-/* Content area styles */
+/* Content area */
 .content-area {
   flex-grow: 1;
   max-width: 900px;
 }
 
-/* Smooth scrolling */
+/* Optional: smooth scroll behavior */
 html {
   scroll-behavior: smooth;
 }
