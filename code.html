@@ -4,22 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Code Showcase - Cameron Patterson</title>
-
-  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Prism.js syntax highlighting -->
-  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css"
+    rel="stylesheet"
+  />
 </head>
 <body>
   <div class="container">
     <h1>Code Showcase</h1>
 
     <nav>
-        <a href="index.html#about">About</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="index.html#contact">Contact</a>
-        <a href="code.html">Code Showcase</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="code.html">Code Showcase</a>
     </nav>
 
     <p>Click a section to expand and view the system breakdowns.</p>
@@ -27,19 +26,22 @@
     <div class="accordion">
       <!-- Dynamic World System -->
       <div class="accordion-item">
-        <button class="accordion-header">Dynamic World System
-            <span class="toggle-icon">▼</span>   
+        <button class="accordion-header" type="button">
+          Dynamic World System
+          <span class="toggle-icon">▼</span>
         </button>
-        
         <div class="accordion-content">
-          <p>This system controls the time of day, weather, sun, and moon transitions in a dynamic world environment.</p>
+          <p>
+            This system controls the time of day, weather, sun, and moon transitions
+            in a dynamic world environment.
+          </p>
           <pre><code class="language-csharp">
 // DynamicWorldSystem.cs (snippet)
 public class DynamicWorldSystem : MonoBehaviour {
     public static DynamicWorldSystem Instance { get; private set; }
     public TimeOfDaySystem timeOfDaySystem = new TimeOfDaySystem();
     public WeatherSystem weatherSystem = new WeatherSystem();
-    
+
     void Update() {
         timeOfDaySystem.UpdateTime();
         weatherSystem.UpdateWeather(timeOfDaySystem.CurrentTimeOfDay);
@@ -51,8 +53,9 @@ public class DynamicWorldSystem : MonoBehaviour {
 
       <!-- Burnout Coffee Counter -->
       <div class="accordion-item">
-        <button class="accordion-header">Burnout: Coffee Count System
-            <span class="toggle-icon">▼</span>
+        <button class="accordion-header" type="button">
+          Burnout: Coffee Count System
+          <span class="toggle-icon">▼</span>
         </button>
         <div class="accordion-content">
           <p>This script tracks the number of coffees picked up and updates the UI.</p>
@@ -73,30 +76,36 @@ public class CoffeeCounter : MonoBehaviour {
           </code></pre>
         </div>
       </div>
-
+      
       <!-- Add more systems here -->
+
     </div>
 
     <p><a href="index.html">← Back to Portfolio</a></p>
   </div>
 
-  <!-- Prism.js -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
 
-  <!-- Accordion toggle script -->
   <script>
     const headers = document.querySelectorAll('.accordion-header');
+
     headers.forEach(header => {
       header.addEventListener('click', () => {
         const content = header.nextElementSibling;
-        const isOpen = content.style.display === 'block';
+        const isActive = content.classList.contains('active');
 
-        // Close all
-        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+        // Close all open accordion contents
+        document.querySelectorAll('.accordion-content').forEach(c => {
+          c.classList.remove('active');
+          c.previousElementSibling.classList.remove('active');
+        });
 
-        // Toggle selected
-        content.style.display = isOpen ? 'none' : 'block';
+        // Toggle current content if it was closed
+        if (!isActive) {
+          content.classList.add('active');
+          header.classList.add('active');
+        }
       });
     });
   </script>
