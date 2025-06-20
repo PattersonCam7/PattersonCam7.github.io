@@ -72,6 +72,63 @@ nav a:focus {
   outline: none;
 }
 
+/* Layout wrapper to hold sidebar and content */
+.page-wrapper {
+  display: flex;
+  gap: 2rem; /* space between sidebar and main */
+  min-height: 100vh;
+}
+
+/* Sidebar styles */
+.sidebar-nav {
+  position: sticky;
+  top: 20px;
+  width: 220px;
+  background-color: #f4f4f4;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  height: fit-content; /* shrink to content */
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar-nav li + li {
+  margin-top: 1rem;
+}
+
+.sidebar-nav a {
+  color: #007acc;
+  text-decoration: none;
+  font-weight: 600;
+  display: block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a:focus {
+  background-color: #007acc;
+  color: white;
+  outline: none;
+}
+
+/* Content area styles */
+.content-area {
+  flex-grow: 1;
+  max-width: 900px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
 /* =======================
    PROJECT SECTIONS
 ======================= */
