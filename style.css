@@ -1,361 +1,280 @@
-/* Reset some default spacing */
+/* =======================
+   RESET STYLES
+======================= */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Body */
+/* =======================
+   BASE STYLES
+======================= */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
 }
-/* Container */
+
+/* =======================
+   LAYOUT
+======================= */
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-
-/* Header */
+/* =======================
+   TYPOGRAPHY
+======================= */
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-  text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-/* Navigation */
-nav {
-  text-align: center;
-  margin-bottom: 30px;
-}
-nav a {
-  margin: 0 15px;
-  text-decoration: none;
-  color: #007acc;
-  font-weight: bold;
-}
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Section Headings */
 section h2 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 5px;
-  margin-top: 40px;
+    font-size: 1.8em;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
 }
 
-/* Projects */
+/* =======================
+   NAVIGATION
+======================= */
+nav {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #007acc;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #005999;
+}
+
+/* =======================
+   PROJECTS SECTION
+======================= */
 .project {
-  margin-bottom: 40px;
-  background-color: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Project Header */
-.project.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 .project h3 {
-  font-size: 1.4em;
-  margin: 0;
+    font-size: 1.4em;
+    margin: 0;
 }
+
 .project h3 a {
-  color: #222;
-  text-decoration: none;
+    color: #222;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
+
 .project h3 a:hover {
-  color: #007acc;
+    color: #007acc;
 }
+
 .project-date {
-  font-size: 0.95em;
-  color: #666;
-  margin-top: 5px;
+    font-size: 0.95em;
+    color: #666;
+    margin-top: 5px;
 }
 
-/* Project Image */
+/* Project Images */
 .project img {
-  width: 100%;
-  height: auto;
-  margin: 15px 0;
-  border-radius: 6px;
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border-radius: 6px;
 }
 
+/* =======================
+   CAROUSEL STYLES
+======================= */
 .carousel {
-  position: relative;
-  max-width: 100%;
-  margin: 20px 0;
-  overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    margin: 20px 0;
+    overflow: hidden;
 }
 
 .carousel-image {
-  display: none;
-  width: 100%;
-  border-radius: 10px;
+    display: none;
+    width: 100%;
+    border-radius: 10px;
+    transition: opacity 0.5s ease;
 }
 
 .carousel-image.active {
-  display: block;
+    display: block;
 }
 
+/* Carousel Buttons */
 .carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1;
-  font-size: 18px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 18px;
+    border-radius: 4px;
+    user-select: none;
 }
 
 .carousel-button.prev {
-  left: 10px;
+    left: 10px;
 }
 
 .carousel-button.next {
-  right: 10px;
+    right: 10px;
 }
 
-/*Video Section */
+/* =======================
+   VIDEO WRAPPER
+======================= */
 .video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  height: 0;
-  overflow: hidden;
-  margin-bottom: 1em;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1em;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
-
-
-/* Contact Links */
+/* =======================
+   CONTACT LINKS
+======================= */
 #contact a {
-  color: #007acc;
+    color: #007acc;
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
 }
+
 #contact a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
-/* Footer */
+/* =======================
+   FOOTER
+======================= */
 footer {
-  text-align: center;
-  margin-top: 60px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-  font-size: 0.9em;
-  color: #999;
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+    color: #999;
 }
 
-/* Code Page Headings */
-.container h2 {
-  margin-top: 30px;
-  font-size: 1.5em;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 6px;
-  margin-bottom: 15px;
-}
+/* =======================
+   Accordion Styles
+======================= */
 
-/* Code Blocks */
-pre {
-  background-color: #2d2d2d; /* Dark background for code blocks */
-  color: #f8f8f2;
-  padding: 16px;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin-bottom: 20px;
-  font-size: 0.95em;
-  font-family: 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-}
-
-/* PrismJS Code Styling Fixes */
-code[class*="language-"] {
-  background: none;
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  word-wrap: normal;
-  tab-size: 4;
-  hyphens: none;
-}
-
-/* Code Page Link (Back to Portfolio) */
-a[href="index.html"] {
-  display: inline-block;
-  margin-top: 30px;
-  text-decoration: none;
-  color: #007acc;
-  font-weight: bold;
-}
-
-a[href="index.html"]:hover {
-  text-decoration: underline;
-}
-
-/* Accordion styles to match projects style */
-.accordion-item {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  background-color: #fff;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
-  padding: 15px 20px;
-}
-
+/* Accordion Header */
 .accordion-header {
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1.4em;
   width: 100%;
-  text-align: left;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 12px 18px;
+  font-size: 1.2em;
+  font-weight: bold;
   cursor: pointer;
-  padding: 0;
-  margin-bottom: 15px;
-  color: #222;
-  transition: color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  transition: background-color 0.3s ease;
 }
+
 .accordion-header:hover {
-  color: #007acc;
+  background-color: #f0f8ff;
 }
 
+/* Active accordion header style */
+.accordion-header.active {
+  background-color: #007acc;
+  color: #fff;
+}
+
+/* Toggle icon */
+.toggle-icon {
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+/* Rotate toggle icon when active */
+.accordion-header.active .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Accordion Content */
 .accordion-content {
-  display: none;
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-  font-size: 1em;
-  color: #333;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  background-color: #fff;
+  padding: 0 18px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0 0 6px 6px;
+  margin-bottom: 20px;
 }
 
+/* When active, show content */
+.accordion-content.active {
+  max-height: 1000px; /* large enough for content */
+  padding: 15px 18px;
+}
+
+/* Code blocks inside accordion */
 .accordion-content pre {
   background-color: #2d2d2d;
-  color: #ccc;
-  padding: 15px;
+  color: #f8f8f2;
+  padding: 12px;
   border-radius: 6px;
   overflow-x: auto;
   margin-top: 10px;
   font-size: 0.9em;
-  line-height: 1.4em;
-}
-
-.accordion-content a {
-  color: #007acc;
-  text-decoration: none;
-}
-.accordion-content a:hover {
-  text-decoration: underline;
-}
-
-/* Accordion / Collapsible Project Styles to match your projects style */
-
-.project-header {
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1.4em;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  padding: 15px 0;
-  margin-bottom: 0;
-  color: #222;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  border-radius: 0;
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-.project-header:hover,
-.project-header.active {
-  color: #007acc;
-  background-color: #f0f8ff;
-}
-
-/* Arrow indicator for collapsible */
-.project-header::after {
-  content: '▼';
-  font-size: 0.8em;
-  color: #007acc;
-  margin-left: 10px;
-  transition: transform 0.3s ease;
-}
-
-.project-header.active::after {
-  transform: rotate(-180deg);
-}
-
-.project-content {
-  display: none;
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid #eee;
-  color: #333;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
-}
-
-.project-content.active {
-  display: block;
-  max-height: 2000px;
-}
-
-#contact-form label {
-  font-weight: bold;
-}
-
-#contact-form input,
-#contact-form textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: Arial, sans-serif;
-  font-size: 1em;
-}
-
-#contact-form button {
-  background-color: #007acc;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-#contact-form button:hover {
-  background-color: #005fa3;
+  font-family: 'Courier New', Courier, monospace;
 }
