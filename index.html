@@ -284,7 +284,10 @@
   document.querySelectorAll('.collapsible').forEach(header => {
     header.addEventListener('click', () => {
       const content = header.nextElementSibling;
+      if (!content) return;
+      
       content.classList.toggle('active');
+      header.classlist.toggle('active');
 
       const icon = header.querySelector('.toggle-icon');
       if (icon) {
