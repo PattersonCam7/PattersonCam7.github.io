@@ -81,7 +81,7 @@ nav a:focus {
 
 /* Sidebar styles */
 .sidebar-nav {
-  position: sticky;
+  position: left;
   top: 20px;
   width: 220px;
   background-color: #f4f4f4;
