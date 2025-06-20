@@ -9,19 +9,15 @@ function scrollImages(projectName, direction) {
   const images = carousel.querySelectorAll('.carousel-image');
   if (!images.length) return;
 
-  // Initialize index for this project if not set
   if (carouselIndexes[projectName] === undefined) {
     carouselIndexes[projectName] = 0;
   }
 
-  // Remove 'active' class from current image
   images[carouselIndexes[projectName]].classList.remove('active');
 
-  // Calculate new index (wraps around)
   carouselIndexes[projectName] =
     (carouselIndexes[projectName] + direction + images.length) % images.length;
 
-  // Add 'active' class to new image
   images[carouselIndexes[projectName]].classList.add('active');
 }
 
@@ -45,16 +41,16 @@ function openProjectFromHash() {
     header.classList.add('active');
     if (icon) icon.textContent = '▲';
 
-    // Delay scrolling so layout updates after expanding content
+    // Delay scrolling until after content expands
     setTimeout(() => {
       projectDiv.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    }, 150);
   } else {
-    // If already open, scroll immediately
+    // Already open, scroll immediately
     projectDiv.scrollIntoView({ behavior: 'smooth' });
   }
 
-  // Reset carousel(s) inside this project to show first image active
+  // Reset carousels inside this project
   const carousels = projectDiv.querySelectorAll('.carousel');
   carousels.forEach(carousel => {
     const projectName = carousel.getAttribute('data-project');
@@ -75,11 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const content = header.nextElementSibling;
       if (!content) return;
 
-      // Toggle visibility
       content.classList.toggle('active');
       header.classList.toggle('active');
 
-      // Toggle icon direction
       const icon = header.querySelector('.toggle-icon');
       if (icon) {
         icon.textContent = icon.textContent === '▼' ? '▲' : '▼';
@@ -87,11 +81,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Auto-open project if URL has hash on page load
+  // Open project if URL has hash on page load
   openProjectFromHash();
+
+  // Intercept sidebar nav link clicks so we can control scrolling and opening
+  document.querySelectorAll('.sidebar-nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const targetHash = link.getAttribute('href');
+
+      if (history.pushState) {
+        history.pushState(null, null, targetHash);
+      } else {
+        location.hash = targetHash;
+      }
+
+      openProjectFromHash();
+    });
+  });
 });
 
-// Also listen for hash changes (sidebar nav clicks)
+// Also listen for hash changes (back/forward browser buttons)
 window.addEventListener('hashchange', () => {
   openProjectFromHash();
 });
