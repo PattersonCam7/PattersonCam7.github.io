@@ -77,7 +77,7 @@ nav a:focus {
   display: flex;
   gap: 2rem; /* space between sidebar and main */
   min-height: 100vh;
-  align-items: flex-start; /* align items to the top */
+  align-items: left; /* align items to the top */
 }
 
 /* Sidebar styles */
