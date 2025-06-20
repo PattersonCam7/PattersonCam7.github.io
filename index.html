@@ -226,7 +226,7 @@
     </footer>
   </div>
 
-  <!-- Scripts -->
+<!-- JS Scripts -->
 
 <!-- Contact form script with rate limit and honeypot -->
 <script>
@@ -279,42 +279,6 @@
   });
 </script>
 
-<!-- Collapsible project sections -->
-<script>
-  document.querySelectorAll('.collapsible').forEach(header => {
-    header.addEventListener('click', () => {
-      const content = header.nextElementSibling;
-      if (!content) return;
-      
-      content.classList.toggle('active');
-      header.classlist.toggle('active');
-
-      const icon = header.querySelector('.toggle-icon');
-      if (icon) {
-        icon.textContent = icon.textContent === '▼' ? '▲' : '▼';
-      }
-    });
-  });
-</script>
-
-<!-- Carousel scrolling -->
-<script>
-  const carouselIndexes = {};
-
-  function scrollImages(projectName, direction) {
-    const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
-    if (!carousel) return;
-
-    const images = carousel.querySelectorAll('.carousel-image');
-    if (!carouselIndexes[projectName]) {
-      carouselIndexes[projectName] = 0;
-    }
-
-    images[carouselIndexes[projectName]].classList.remove('active');
-    carouselIndexes[projectName] = (carouselIndexes[projectName] + direction + images.length) % images.length;
-    images[carouselIndexes[projectName]].classList.add('active');
-  }
-</script>
 
 
 </body>
