@@ -33,7 +33,7 @@
 
       <!-- Project: Horror Fishing -->
       <div class="project">
-        <button class="project-header" type="button">
+        <div class="project-header collapsible">
           <h3>
             <a href="https://www.youtube.com/watch?v=leTbzItSkQs" target="_blank" rel="noopener">
               Project In Development (Horror Fishing)
@@ -41,9 +41,10 @@
           </h3>
           <span class="project-date">In Development</span>
           <span class="toggle-icon">▼</span>
-        </button>
+        </div>
 
         <div class="project-content">
+          <!-- Carousel -->
           <div class="carousel" data-project="horrorfishing">
             <img src="images/horrorfishing_thumbnail.png" class="carousel-image active" alt="Horror Fishing Thumbnail" />
             <img src="images/horrorfishingscreenshot001.png" class="carousel-image" alt="Screenshot 1" />
@@ -51,6 +52,7 @@
             <button class="carousel-button next" onclick="scrollImages('horrorfishing', 1)">&#10095;</button>
           </div>
 
+          <!-- Video -->
           <div class="video-wrapper">
             <iframe 
               src="https://www.youtube.com/embed/leTbzItSkQs"
