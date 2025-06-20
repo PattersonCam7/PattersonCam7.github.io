@@ -60,7 +60,7 @@ nav {
 nav a {
   margin: 0 1rem;
   text-decoration: none;
-  color: #007acc;
+  color: #000000;
   font-weight: bold;
   transition: color 0.3s ease;
 }
