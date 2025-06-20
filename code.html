@@ -23,14 +23,13 @@
 
     <p>Click a section to expand and view the system breakdowns.</p>
 
-    <div class="accordion">
+    <div class="project">
       <!-- Dynamic World System -->
-      <div class="accordion-item">
-        <button class="accordion-header" type="button">
-          Dynamic World System
-          <span class="toggle-icon">▼</span>
-        </button>
-        <div class="accordion-content">
+      <div class="project-header collapsible">
+        <h3>Dynamic World System</h3>
+        <span class="project-date">June 2025</span>
+        <span class="toggle-icon">▼</span>
+        <div class="project-content">
           <p>
             This system controls the time of day, weather, sun, and moon transitions
             in a dynamic world environment.
@@ -53,11 +52,11 @@ public class DynamicWorldSystem : MonoBehaviour {
 
       <!-- Burnout Coffee Counter -->
       <div class="accordion-item">
-        <button class="accordion-header" type="button">
-          Burnout: Game Timer System
+          <h3>Burnout: Game Timer System</h3>
+          <span class="project-date">May 2025</span>
           <span class="toggle-icon">▼</span>
         </button>
-        <div class="accordion-content">
+        <div class="project-content">
           <p>This script is used to track the current timer and calculate reductions in time when a coffee is picked up.</p>
           <pre><code class="language-csharp">
 
@@ -233,32 +232,13 @@ public class CoffeePickup : MonoBehaviour
     </div>
 
     <p><a href="index.html">← Back to Portfolio</a></p>
-  </div>
+  
+</div>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
 
-  <script>
-    const headers = document.querySelectorAll('.accordion-header');
+<script src="scripts.js"></script>
 
-    headers.forEach(header => {
-      header.addEventListener('click', () => {
-        const content = header.nextElementSibling;
-        const isActive = content.classList.contains('active');
-
-        // Close all open accordion contents
-        document.querySelectorAll('.accordion-content').forEach(c => {
-          c.classList.remove('active');
-          c.previousElementSibling.classList.remove('active');
-        });
-
-        // Toggle current content if it was closed
-        if (!isActive) {
-          content.classList.add('active');
-          header.classList.add('active');
-        }
-      });
-    });
-  </script>
 </body>
 </html>
