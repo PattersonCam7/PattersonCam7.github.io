@@ -321,10 +321,14 @@ a[href="index.html"]:hover {
   padding-top: 15px;
   border-top: 1px solid #eee;
   color: #333;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
 }
 
 .project-content.active {
   display: block;
+  max-height: 2000px;
 }
 
 #contact-form label {
