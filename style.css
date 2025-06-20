@@ -80,16 +80,16 @@ nav a:focus {
 }
 
 /* Sidebar styles */
-.sidebar-nav {
-  position: left;
+.side-nav {
+  position: sticky;
   top: 20px;
-  width: 220px;
-  background-color: #f4f4f4;
-  padding: 1.5rem;
-  border-radius: 8px;
+  width: 200px;
+  height: max-content;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
   border: 1px solid #ddd;
-  font-family: Arial, sans-serif;
-  height: fit-content; /* shrink to content */
+  padding: 1rem;
+  background: #f9f9f9;
 }
 
 .sidebar-nav ul {
