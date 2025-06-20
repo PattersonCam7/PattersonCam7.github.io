@@ -2,279 +2,318 @@
    RESET STYLES
 ======================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* =======================
    BASE STYLES
 ======================= */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 /* =======================
    LAYOUT
 ======================= */
 .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* =======================
    TYPOGRAPHY
 ======================= */
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
-section h2 {
-    font-size: 1.8em;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 5px;
+h2 {
+  font-size: 1.8rem;
+  margin: 3rem 0 1rem;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.3rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin: 0;
+  font-weight: 600;
 }
 
 /* =======================
    NAVIGATION
 ======================= */
 nav {
-    text-align: center;
-    margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #007acc;
-    font-weight: bold;
-    transition: color 0.3s ease;
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
-    color: #005999;
+nav a:hover,
+nav a:focus {
+  color: #005999;
+  text-decoration: underline;
+  outline: none;
 }
 
 /* =======================
-   PROJECTS SECTION
+   PROJECT SECTIONS
 ======================= */
 .project {
-    margin-bottom: 40px;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  margin-bottom: 2.5rem;
+  padding: 1rem 1.25rem;
 }
 
+/* Project Header Button */
 .project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.75rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #222;
+  user-select: none;
+  transition: color 0.3s ease;
 }
 
-.project h3 {
-    font-size: 1.4em;
-    margin: 0;
+.project-header:hover,
+.project-header:focus {
+  color: #007acc;
+  outline: none;
 }
 
-.project h3 a {
-    color: #222;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.project-header a {
+  flex-grow: 1;
+  color: inherit;
+  text-decoration: none;
 }
 
-.project h3 a:hover {
-    color: #007acc;
+.project-header a:hover,
+.project-header a:focus {
+  text-decoration: underline;
+  outline: none;
 }
 
 .project-date {
-    font-size: 0.95em;
-    color: #666;
-    margin-top: 5px;
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* Project Images */
-.project img {
-    width: 100%;
-    height: auto;
-    margin: 15px 0;
-    border-radius: 6px;
+/* Toggle icon */
+.toggle-icon {
+  font-size: 1.2rem;
+  margin-left: 0.75rem;
+  color: #007acc;
+  user-select: none;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate icon when active (JS adds .active to header) */
+.project-header.active .toggle-icon {
+  transform: rotate(180deg);
 }
 
 /* =======================
-   CAROUSEL STYLES
+   PROJECT CONTENT (collapsible)
+======================= */
+.project-content {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #ddd;
+  display: none;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Show content when active */
+.project-content.active {
+  display: block;
+}
+
+/* =======================
+   CAROUSEL
 ======================= */
 .carousel {
-    position: relative;
-    max-width: 100%;
-    margin: 20px 0;
-    overflow: hidden;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 1rem 0 2rem;
+  border-radius: 10px;
 }
 
 .carousel-image {
-    display: none;
-    width: 100%;
-    border-radius: 10px;
-    transition: opacity 0.5s ease;
+  display: none;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: opacity 0.5s ease;
+  user-select: none;
 }
 
 .carousel-image.active {
-    display: block;
+  display: block;
+  opacity: 1;
 }
 
 /* Carousel Buttons */
 .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.6);
-    border: none;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-    font-size: 18px;
-    border-radius: 4px;
-    user-select: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.carousel-button:hover,
+.carousel-button:focus {
+  background-color: rgba(0, 0, 0, 0.8);
+  outline: none;
 }
 
 .carousel-button.prev {
-    left: 10px;
+  left: 10px;
 }
 
 .carousel-button.next {
-    right: 10px;
+  right: 10px;
 }
 
 /* =======================
    VIDEO WRAPPER
 ======================= */
 .video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-    margin-bottom: 1em;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  margin-bottom: 1.5rem;
 }
 
 .video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  pointer-events: auto;
 }
 
 /* =======================
-   CONTACT LINKS
+   CONTACT FORM
 ======================= */
-#contact a {
-    color: #007acc;
-    text-decoration: none;
-    transition: text-decoration 0.3s ease;
+#contact {
+  margin-top: 3rem;
 }
 
-#contact a:hover {
-    text-decoration: underline;
+#contact label {
+  font-weight: 600;
+}
+
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+#contact input[type="text"]:focus,
+#contact input[type="email"]:focus,
+#contact textarea:focus {
+  border-color: #007acc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
+}
+
+#contact button[type="submit"] {
+  background-color: #007acc;
+  color: white;
+  font-weight: bold;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#contact button[type="submit"]:hover,
+#contact button[type="submit"]:focus {
+  background-color: #005999;
+  outline: none;
+}
+
+/* Response message */
+#response-message {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  color: #007acc;
+  min-height: 1.25rem;
 }
 
 /* =======================
    FOOTER
 ======================= */
 footer {
-    text-align: center;
-    margin-top: 60px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-    font-size: 0.9em;
-    color: #999;
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+  font-size: 0.9rem;
+  color: #999;
 }
 
 /* =======================
-   Accordion Styles
+   ANIMATIONS
 ======================= */
-
-/* Accordion Header */
-.accordion-header {
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 12px 18px;
-  font-size: 1.2em;
-  font-weight: bold;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 6px;
-  margin-bottom: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.accordion-header:hover {
-  background-color: #f0f8ff;
-}
-
-/* Active accordion header style */
-.accordion-header.active {
-  background-color: #007acc;
-  color: #fff;
-}
-
-/* Toggle icon */
-.toggle-icon {
-  font-size: 1.2em;
-  transition: transform 0.3s ease;
-  user-select: none;
-}
-
-/* Rotate toggle icon when active */
-.accordion-header.active .toggle-icon {
-  transform: rotate(180deg);
-}
-
-/* Accordion Content */
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.4s ease;
-  background-color: #fff;
-  padding: 0 18px;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  border-radius: 0 0 6px 6px;
-  margin-bottom: 20px;
-}
-
-/* When active, show content */
-.accordion-content.active {
-  /*max-height: 1000px; /* large enough for content */
-  padding: 15px 18px;
-}
-
-/* Code blocks inside accordion */
-.accordion-content pre {
-  background-color: #2d2d2d;
-  color: #f8f8f2;
-  padding: 12px;
-  border-radius: 6px;
-  overflow-x: auto;
-  margin-top: 10px;
-  font-size: 0.9em;
-  font-family: 'Courier New', Courier, monospace;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
