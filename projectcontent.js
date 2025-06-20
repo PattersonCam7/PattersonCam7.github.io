@@ -48,26 +48,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-open project if URL has hash on page load
   const hash = window.location.hash;
   if (hash) {
-    // Remove the '#' to get the ID
-    const targetId = hash.substring(1);
-    const targetProject = document.getElementById(targetId);
-    if (targetProject) {
-      // Get the header and content elements inside the project div
-      const header = targetProject.querySelector('.project-header');
-      const content = targetProject.querySelector('.project-content');
-      const icon = header.querySelector('.toggle-icon');
+    const targetHeading = document.querySelector(hash);
+    if (targetHeading) {
+      // Find closest ancestor with class "project"
+      const projectDiv = targetHeading.closest('.project');
+      if (projectDiv) {
+        const header = projectDiv.querySelector('.project-header');
+        const content = projectDiv.querySelector('.project-content');
+        const icon = header.querySelector('.toggle-icon');
 
-      // If not already active, toggle classes and icon
-      if (content && !content.classList.contains('active')) {
-        content.classList.add('active');
-        header.classList.add('active');
-        if (icon) {
-          icon.textContent = '▲'; // open icon
+        if (content && !content.classList.contains('active')) {
+          content.classList.add('active');
+          header.classList.add('active');
+          if (icon) icon.textContent = '▲';
         }
-      }
 
-      // Scroll smoothly to the project
-      targetProject.scrollIntoView({ behavior: 'smooth' });
+        // Reset carousel(s) inside this project to show first image active
+        const carousels = projectDiv.querySelectorAll('.carousel');
+        carousels.forEach(carousel => {
+          const projectName = carousel.getAttribute('data-project');
+          const images = carousel.querySelectorAll('.carousel-image');
+          if (images.length) {
+            images.forEach(img => img.classList.remove('active'));
+            images[0].classList.add('active');
+            carouselIndexes[projectName] = 0;
+          }
+        });
+
+        projectDiv.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   }
 });
