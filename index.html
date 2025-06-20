@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-
 <body>
   <div class="container">
     <h1>Cameron Patterson</h1>
@@ -20,122 +19,149 @@
     <section id="about">
       <h2>About Me</h2>
       <p>
-        I’m a game programmer with experience in Unity and Unreal Engine, I have used these game engines to develop various game projects since 2017. Passionate about gameplay systems and tools development.
+        I’m a game programmer with experience in Unity and Unreal Engine. I have used these game engines to develop various game projects since 2017. Passionate about gameplay systems and tools development.
       </p>
     </section>
 
     <section id="projects">
       <h2>Projects</h2>
 
+      <!-- Horror Fishing -->
       <div class="project">
-        <div class="project header">
+        <div class="project-header">
           <h3>
             <a href="https://www.youtube.com/watch?v=leTbzItSkQs" target="_blank" rel="noopener">Project In Development (Horror Fishing)</a>
           </h3>
           <span class="project-date">In Development</span>
         </div>
-        <div class="carousel" data-project="horror fishing">
-        <img src="images/horrorfishing_thumbnail.png" class="carousel-image active" alt="Horror Fishing Thumbnail">  
-        <img src="images/horrorfishingscreenshot001.png" class="carousel-image active" alt="Screenshot 1">
 
-        <button class="carousel-button prev" onclick="scrollImages('potion maker', -1)">&#10094;</button>
-        <button class="carousel-button next" onclick="scrollImages('potion maker', 1)">&#10095;</button>
+        <div class="carousel" data-project="horrorfishing">
+          <img src="images/horrorfishing_thumbnail.png" class="carousel-image active" alt="Horror Fishing Thumbnail">  
+          <img src="images/horrorfishingscreenshot001.png" class="carousel-image" alt="Screenshot 1">
+          <button class="carousel-button prev" onclick="scrollImages('horrorfishing', -1)">&#10094;</button>
+          <button class="carousel-button next" onclick="scrollImages('horrorfishing', 1)">&#10095;</button>
         </div>
+
         <div class="video-wrapper">
           <iframe 
-          src="https://www.youtube.com/watch?v=leTbzItSkQs" 
-          title="Horror Fishing - Day/Night Cycle"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+            src="https://www.youtube.com/embed/leTbzItSkQs" 
+            title="Horror Fishing - Day/Night Cycle"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
+
         <p><a href="code.html">See code breakdown</a></p>
         <p>
-          A horror survival game currently in a prototype phase. Set in the vast landscapes of Alaska, you must fish to survive the day and build to survive the night. Currently prototyping and defining project requirements before I determine the game engine. So far I have create the day/night cycle with scope to create it into a full 'Dynamic World System' that controls the time of day and weather throughout the game. My next step is to create a fishing system that allows the player to cast, reel, select bait, catch different fish species and the player gains different beneficial stats depending on the fish they eat or gains currency depending on the rarity of the fish. You can see how some of my day/night system works in the screenshots above.
+          A horror survival game currently in a prototype phase. Set in the vast landscapes of Alaska, you must fish to survive the day and build to survive the night. Currently prototyping and defining project requirements before determining the game engine. So far I have created the day/night cycle, aiming to evolve it into a full 'Dynamic World System' that controls time and weather. Next, I’ll be building a fishing system with casting, reeling, bait selection, species variety, and stat/currency gains from fish. Screenshots show the current system in action.
         </p>
       </div>
-    
+
+      <!-- Burnout -->
       <div class="project">
-        <div class="project header">
+        <div class="project-header">
           <h3>
             <a href="https://pattersoncam7.itch.io/burnout" target="_blank" rel="noopener">Burnout - Click To View Game Page</a>
           </h3>
           <span class="project-date">May 2025</span>
         </div>
+
         <img src="images/burnout_thumbnail.png" alt="Burnout" />
+
+        <div class="video-wrapper">
+          <iframe 
+            src="https://www.youtube.com/embed/WL4-jhmuTJY" 
+            title="Burnout Playthrough"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
         <p>
-          A short time-based game set in an office. Created with another team member for a week long game jam, however our combined schedules meant we only had around three days to complete the game. Made with Unity &amp; C#.
+          A short time-based game set in an office. Created with another team member for a week-long game jam, though we only had around three days. Made with Unity &amp; C#.
         </p>
       </div>
 
+      <!-- Sundown -->
       <div class="project">
-        <div class="project header">
+        <div class="project-header">
           <h3>
             <a href="https://pattersoncam7.itch.io/sundown" target="_blank" rel="noopener">Sundown - Click To View Game Page</a>
           </h3>
           <span class="project-date">April 2025</span>
         </div>
+
         <img src="images/sundown_thumbnail.png" alt="Sundown" />
+
         <p>
-          A first-person, narrative driven psychological horror made for a year long project in university. Made with Unreal Engine 5 and Blueprints.
+          A first-person, narrative-driven psychological horror made for a year-long university project. Developed with Unreal Engine 5 and Blueprints.
         </p>
       </div>
 
+      <!-- Potion Maker VR -->
       <div class="project">
-        <div class="project header">
+        <div class="project-header">
           <h3>
-            <a href="<!-- ADD YOUTUBE LINK HERE -->" target="_blank" rel="noopener">Potion Maker VR - Unreleased</a>
+            <a href="#" target="_blank" rel="noopener">Potion Maker VR - Unreleased</a>
           </h3>
           <span class="project-date">April 2025</span>
         </div>
-        
-        <div class="carousel" data-project="potion maker">
-        <img src="images/potionmaker_thumbnail.png" class="carousel-image active" alt="Potion Maker Thumbnail">  
-        <img src="images/potionmakerscreenshot001.png" class="carousel-image active" alt="Screenshot 1">
-        <img src="images/potionmakerscreenshot002.png" class="carousel-image" alt="Screenshot 2">
-        <button class="carousel-button prev" onclick="scrollImages('potion maker', -1)">&#10094;</button>
-        <button class="carousel-button next" onclick="scrollImages('potion maker', 1)">&#10095;</button>
+
+        <div class="carousel" data-project="potionmaker">
+          <img src="images/potionmaker_thumbnail.png" class="carousel-image active" alt="Potion Maker Thumbnail">  
+          <img src="images/potionmakerscreenshot001.png" class="carousel-image" alt="Screenshot 1">
+          <img src="images/potionmakerscreenshot002.png" class="carousel-image" alt="Screenshot 2">
+          <button class="carousel-button prev" onclick="scrollImages('potionmaker', -1)">&#10094;</button>
+          <button class="carousel-button next" onclick="scrollImages('potionmaker', 1)">&#10095;</button>
         </div>
+
         <p>
-          A VR game where you flip through customer requests and create the potion they need. You play as a humble wizard with the desire on helping the village. Made with Unity and C#. I will potentially release this game in the future after some more development in the game loop and polish of the user experience, this currently serves as a prototype and shows the idea behind the game loop.
+          A VR game where you flip through customer requests and create potions to help a village. Made with Unity and C#. Currently a prototype showcasing the loop; future plans include improved UX and more polish.
         </p>
       </div>
 
+      <!-- Dungeon Crawler -->
       <div class="project">
-        <div class="project header">
+        <div class="project-header">
           <h3>
             <a href="https://youtu.be/UEHkbVAyGOE" target="_blank" rel="noopener">Dungeon Crawler - Unreleased</a>
           </h3>
           <span class="project-date">January 2025</span>
         </div>
+
         <div class="video-wrapper">
           <iframe 
-          src="https://www.youtube.com/embed/UEHkbVAyGOE" 
-          title="Dungeon Crawler Playthrough"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
+            src="https://www.youtube.com/embed/UEHkbVAyGOE" 
+            title="Dungeon Crawler Playthrough"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
+
         <p>
-          A third-person, 3D dungeon crawler prototype with a focus on player combat, enemy AI, traps and puzzles. This was created for an Advanced Game Development module in University. Made with Unreal Engine 5 and Blueprints.
+          A third-person, 3D dungeon crawler prototype focused on combat, AI, traps, and puzzles. Created for an Advanced Game Development module using Unreal Engine 5 and Blueprints.
         </p>
       </div>
-    </section>
 
-    <div class="project">
-        <div class="project header">
+      <!-- Last Turn -->
+      <div class="project">
+        <div class="project-header">
           <h3>
-            <a href="https://gamejolt.com/games/LastTurn/367471" rel="noopener">Last Turn - Click To View Game Page</a>
+            <a href="https://gamejolt.com/games/LastTurn/367471" target="_blank" rel="noopener">Last Turn - Click To View Game Page</a>
           </h3>
           <span class="project-date">September 2018</span>
         </div>
+
         <img src="images/lastturn_thumbnail.png" alt="Last Turn" />
+
         <p>
-            This was my first attempt at creating a game, developed as a horror experience during college using Unreal Engine 4. I released it on Game Jolt and received valuable feedback through player comments and YouTube playthroughs, which helped me learn and improve as a developer.
+          My first game, developed during college. A horror experience made in Unreal Engine 4 and released on Game Jolt. Player feedback helped shape my growth as a developer.
         </p>
       </div>
+    </section>
 
     <section id="contact">
       <h2>Contact</h2>
@@ -163,6 +189,5 @@
       images[carouselIndexes[projectName]].classList.add('active');
     }
   </script>
-  
 </body>
 </html>

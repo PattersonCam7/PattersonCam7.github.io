@@ -3,47 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Code Showcase - Cameron Patterson</title>
+  <title>Code Showcase – Cameron Patterson</title>
+  
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
-  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+
+  <!-- Prism.js Theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" />
 </head>
+
 <body>
   <div class="container">
-    <h1>Dynamic World System</h1>
-    <p>This system controls the time of day, weather, sun, and moon transitions in a dynamic world environment.</p>
+    <header>
+      <h1>Dynamic World System</h1>
+      <p>A system that controls time of day, weather, sunlight, and moon phases in a dynamic open-world environment.</p>
+    </header>
 
-    <h2>Core System</h2>
-    <pre><code class="language-csharp">
+    <main>
+      <section>
+        <h2>Core System</h2>
+        <pre><code class="language-csharp">
 // DynamicWorldSystem.cs
 public class DynamicWorldSystem : MonoBehaviour {
     public static DynamicWorldSystem Instance { get; private set; }
     public TimeOfDaySystem timeOfDaySystem = new TimeOfDaySystem();
     public WeatherSystem weatherSystem = new WeatherSystem();
-    ...
+
     void Update() {
         timeOfDaySystem.UpdateTime();
         weatherSystem.UpdateWeather(timeOfDaySystem.CurrentTimeOfDay);
-        ...
     }
 }
-    </code></pre>
+        </code></pre>
+      </section>
 
-    <h2>Time of Day Subsystem</h2>
-    <pre><code class="language-csharp">
+      <section>
+        <h2>Time of Day Subsystem</h2>
+        <pre><code class="language-csharp">
 [System.Serializable]
 public class TimeOfDaySystem {
     private float dayLengthInSeconds = 600f;
     private float currentTimeOfDay;
-    ...
+
     public void UpdateTime() {
         CurrentTimeOfDay += Time.deltaTime * TimeScale;
     }
 }
-    </code></pre>
+        </code></pre>
+      </section>
+    </main>
 
-    <a href="index.html">← Back to Portfolio</a>
+    <footer>
+      <p><a href="index.html">← Back to Portfolio</a></p>
+    </footer>
   </div>
 
+  <!-- Prism.js Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
 </body>

@@ -170,3 +170,53 @@ footer {
   font-size: 0.9em;
   color: #999;
 }
+
+/* Code Page Headings */
+.container h2 {
+  margin-top: 30px;
+  font-size: 1.5em;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 6px;
+  margin-bottom: 15px;
+}
+
+/* Code Blocks */
+pre {
+  background-color: #2d2d2d; /* Dark background for code blocks */
+  color: #f8f8f2;
+  padding: 16px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  font-size: 0.95em;
+  font-family: 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* PrismJS Code Styling Fixes */
+code[class*="language-"] {
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Code Page Link (Back to Portfolio) */
+a[href="index.html"] {
+  display: inline-block;
+  margin-top: 30px;
+  text-decoration: none;
+  color: #007acc;
+  font-weight: bold;
+}
+
+a[href="index.html"]:hover {
+  text-decoration: underline;
+}
