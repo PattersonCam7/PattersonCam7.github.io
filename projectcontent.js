@@ -15,26 +15,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Carousel logic
+  // Carousel state tracking
   const carouselIndexes = {};
 
+  // Expose scrollImages globally for inline HTML use
   window.scrollImages = function (projectName, direction) {
     const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
     if (!carousel) return;
 
     const images = carousel.querySelectorAll('.carousel-image');
-    if (images.length === 0) return;
+    if (!images.length) return;
 
+    // Initialize index if needed
     if (carouselIndexes[projectName] === undefined) {
-      // Find current active index
       carouselIndexes[projectName] = [...images].findIndex(img => img.classList.contains('active')) || 0;
     }
 
+    // Remove active class
     images[carouselIndexes[projectName]].classList.remove('active');
 
+    // Update index
     carouselIndexes[projectName] =
       (carouselIndexes[projectName] + direction + images.length) % images.length;
 
+    // Add active class to the new image
     images[carouselIndexes[projectName]].classList.add('active');
   };
 });

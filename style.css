@@ -178,6 +178,12 @@ nav a:focus {
 /* =======================
    CAROUSEL
 ======================= */
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
 .carousel {
   position: relative;
   max-width: 100%;
@@ -193,6 +199,7 @@ nav a:focus {
   border-radius: 10px;
   transition: opacity 0.5s ease;
   user-select: none;
+  object-fit: contain;
 }
 
 .carousel-image.active {
