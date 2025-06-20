@@ -148,13 +148,24 @@ nav a:focus {
   margin-top: 1rem;
   padding-top: 0.75rem;
   border-top: 1px solid #ddd;
-  display: none;
   animation: fadeIn 0.3s ease forwards;
 }
+
+.project-content img {
+  max-width: 100%;      /* Make sure image never exceeds container width */
+  height: auto;         /* Keep aspect ratio */
+  display: block;       /* Remove inline spacing */
+  margin: 0 auto;       /* Optional: center image horizontally */
+  max-height: 300px;    /* Optional: limit max height to keep all similar */
+  object-fit: contain;  /* Ensure image scales properly within bounds */
+  box-sizing: border-box;
+}
+
 
 /* Show content when active */
 .project-content.active {
   display: block;
+  animation: fadeIn 0.3s ease forwards;
 }
 
 /* =======================
