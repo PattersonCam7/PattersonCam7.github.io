@@ -175,6 +175,11 @@ nav a:focus {
   color: #555;
 }
 
+.language-csharp{
+  max-width: 100%;
+  height: auto;
+}
+
 /* =======================
    CAROUSEL
 ======================= */
