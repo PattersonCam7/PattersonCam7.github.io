@@ -174,11 +174,21 @@
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: cameronpatterson77@gmail.com</p>
-      <p>GitHub: <a href="https://github.com/pattersoncam7" target="_blank" rel="noopener">github.com/pattersoncam7</a></p>
-    </section>
+<section id="contact">
+  <h2>Contact</h2>
+  <form id="contact-form" action="mailto:cameronpatterson77@gmail.com" method="POST" enctype="text/plain">
+    <label for="name">Name:</label><br />
+    <input type="text" id="name" name="name" required /><br /><br />
+
+    <label for="email">Email:</label><br />
+    <input type="email" id="email" name="email" required /><br /><br />
+
+    <label for="message">Message:</label><br />
+    <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+
+    <button type="submit">Send</button>
+  </form>
+</section>
 
     <footer>
       &copy; 2025 Cameron Patterson
