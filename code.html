@@ -54,25 +54,176 @@ public class DynamicWorldSystem : MonoBehaviour {
       <!-- Burnout Coffee Counter -->
       <div class="accordion-item">
         <button class="accordion-header" type="button">
-          Burnout: Coffee Count System
+          Burnout: Game Timer System
           <span class="toggle-icon">▼</span>
         </button>
         <div class="accordion-content">
-          <p>This script tracks the number of coffees picked up and updates the UI.</p>
+          <p>This script is used to track the current timer and calculate reductions in time when a coffee is picked up.</p>
           <pre><code class="language-csharp">
-// CoffeeCountManager.cs
-public class CoffeeCounter : MonoBehaviour {
-    public int coffeeCount = 0;
 
-    public void CollectCoffee() {
-        coffeeCount++;
-        UpdateUI();
+// CountdownTimer.cs (snippet)
+public class CountdownTimer : MonoBehaviour 
+
+//Variable declarations
+
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private EndGameScript endGameScript;
+
+    private FirstPersonController firstPersonController;
+    private FootstepSounds footstepSounds;
+
+    public TextMeshProUGUI timerText;
+
+    //Timer Variables
+    public float startTime = 180f; // 3 minutes
+    private float adjustedStartTime;
+    private float currentTime;
+    private bool isTimerRunning = false;
+
+    //Time Reduction Variables
+    private int coffeeCount = 0;
+    public float baseReduction = 20f; // Base reduction time in seconds
+    public float exponent = 1.5f; // Exponent for the reduction formula
+
+    void Update()
+    {
+        if (isTimerRunning)
+        {
+            currentTime -= Time.deltaTime; // Decrease the timer by the time passed since last frame
+
+            if (currentTime <= 0 && endGameScript.gameEnded == false)
+            {
+                currentTime = 0; // Ensure timer does not go below zero
+                isTimerRunning = false;
+                Debug.Log("Timer finished!");
+                timerText.gameObject.SetActive(false); // Hide timer text when finished
+                ShowGameOverScreen(); // Show game over screen when timer ends
+            }
+
+            else if (currentTime <= 0 && endGameScript.gameEnded == true) // If the game has already ended, do not show the game over screen again
+            {
+                currentTime = 0; 
+                isTimerRunning = false;
+                Debug.Log("Timer finished!");
+                timerText.gameObject.SetActive(false);
+            }
+
+            UpdateHUD(); // Update the timer display
+
+        }
     }
 
-    private void UpdateUI() {
-        // UI logic to update coffee count display
+    void UpdateHUD()
+    {
+        int minutes = Mathf.FloorToInt(currentTime / 60f); // Calculate minutes
+        int seconds = Mathf.FloorToInt(currentTime % 60f); // Calculate seconds
+        timerText.text = $"Break Ends In: {minutes:00}:{seconds:00}"; // Format the timer text
     }
+
+    public void DrinkCoffee() // Method to handle coffee consumption
+    {
+
+        firstPersonController.UnlockSprintForDuration(10); // Unlock sprint for 10 seconds
+        footstepSounds.ActivateCoffeeEffect(10f); // Activate coffee effect for 10 seconds (Increases footstep sound pitch to simulate energy boost)
+        coffeeCount++; // Increment coffee count
+
+        float reduction = baseReduction * Mathf.Pow(coffeeCount, exponent); // Calculate time reduction based on coffee count
+        adjustedStartTime = Mathf.Max(10f, startTime - reduction); // Clamp to avoid negative time
+        currentTime = adjustedStartTime; // Restart timer at adjusted time
+
+        //Debug.Log($"Coffee: {coffeeCount}, New Time: {adjustedStartTime:F1}s"); // Log the coffee count and new time for debugging
+    }
+
+
+          </code></pre>
+          <p>This script is used to detect when a coffee is picked up</p>
+          <pre><code class="language-csharp">
+
+// CoffeePickup.cs (snippet)
+public class CoffeePickup : MonoBehaviour
+{
+    private string playerTag = "Player";
+
+    FootstepSounds footstepSounds;
+
+    [Header ("Audio Setup")]
+    public AudioClip pickupSound; // Assign in Inspector
+    public float volume = 1.0f;
+
+    // Reference to the CountdownTimer script
+    public CountdownTimer countdownTimer;
+
+    public TextMeshProUGUI coffeeTextObject;
+    public string coffeeMessage;
+
+    private FirstPersonController firstPersonController;
+
+    private MeshRenderer meshRenderer;
+    private BoxCollider boxCollider;
+
+    void Start()
+    {
+        coffeeTextObject.gameObject.SetActive(false);
+
+        // If not assigned in Inspector, try to find the timer in the scene
+        if (countdownTimer == null)
+        {
+            countdownTimer = FindObjectOfType<CountdownTimer>();
+        }
+
+        firstPersonController = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstPersonController>();
+
+        meshRenderer = GetComponent<MeshRenderer>();
+        boxCollider = GetComponent<BoxCollider>();
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(playerTag))
+        {
+            StartCoroutine(CoffeeTextPopUp());
+
+            //Add any pickup sounds/animations or other behaviour(player stats increase, add coffee count to player)
+            AudioSource playerAudio = other.GetComponent<AudioSource>();
+
+            meshRenderer.enabled = false; // Hide the coffee mesh renderer
+            boxCollider.enabled = false; // Disable the coffee collider
+
+            playerAudio.PlayOneShot(pickupSound);
+
+            // Tell the timer a coffee was picked up
+            if (countdownTimer != null)
+            {
+                countdownTimer.DrinkCoffee();
+            }
+
+
+
+        }
+    }
+
+    private IEnumerator CoffeeTextPopUp()
+    {
+        coffeeTextObject.gameObject.SetActive(true);
+
+        yield return new WaitForEndOfFrame();
+
+        coffeeTextObject.text = coffeeMessage; //Customisable text set in the Inspector for each coffee pickup. Useful to assign text for specific coffee pickups. e.g. the broom closet coffee text "who put this in the broom closet?!".
+
+        yield return new WaitForSeconds(5); // Wait for 5 seconds before hiding the text
+
+        coffeeTextObject.gameObject.SetActive(false); // Hide the text after 5 seconds
+
+        if (!gameObject.CompareTag("EndCoffee"))
+        {
+            Destroy(gameObject); // Destroy the coffee pickup object after displaying the text, the coffee pickup mesh is already hidden in void OnTriggerEnter, this just cleans up the objects in scene.
+        }
+
+    }
+
 }
+
           </code></pre>
         </div>
       </div>
