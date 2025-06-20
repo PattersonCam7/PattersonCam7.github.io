@@ -61,6 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
           content.classList.add('active');
           header.classList.add('active');
           if (icon) icon.textContent = '▲';
+
+          // Delay scrolling so layout updates after expanding content
+          setTimeout(() => {
+            projectDiv.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        } else {
+          // If already open, scroll immediately
+          projectDiv.scrollIntoView({ behavior: 'smooth' });
         }
 
         // Reset carousel(s) inside this project to show first image active
@@ -74,8 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
             carouselIndexes[projectName] = 0;
           }
         });
-
-        projectDiv.scrollIntoView({ behavior: 'smooth' });
       }
     }
   }
