@@ -1,16 +1,18 @@
 // Collapsible project sections
-document.querySelectorAll('.collapsible').forEach(header => {
-  header.addEventListener('click', () => {
-    const content = header.nextElementSibling;
-    if (!content) return;
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.collapsible').forEach(header => {
+    header.addEventListener('click', () => {
+      const content = header.nextElementSibling;
+      if (!content) return;
 
-    content.classList.toggle('active');
-    header.classList.toggle('active');  // fixed typo here: classList
+      content.classList.toggle('active');
+      header.classList.toggle('active');
 
-    const icon = header.querySelector('.toggle-icon');
-    if (icon) {
-      icon.textContent = icon.textContent === '▼' ? '▲' : '▼';
-    }
+      const icon = header.querySelector('.toggle-icon');
+      if (icon) {
+        icon.textContent = icon.textContent === '▼' ? '▲' : '▼';
+      }
+    });
   });
 });
 
