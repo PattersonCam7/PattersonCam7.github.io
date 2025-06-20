@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Code Showcase - Cameron Patterson</title>
   <link rel="stylesheet" href="style.css" />
-  <link
-    href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css"
-    rel="stylesheet"
-  />
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
     <h1>Code Showcase</h1>
 
     <nav>
@@ -22,17 +20,18 @@
     </nav>
 
     <!-- Projects Section -->
-<section id="projects">
-    <h2>Projects</h2>
-    <p>Click a section to expand and view the system breakdowns.</p>
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>Click a section to expand and view the system breakdowns.</p>
 
-    <div class="project">
-      <!-- Dynamic World System -->
-      <div class="project-header collapsible">
-        <h3>Dynamic World System</h3>
-        <span class="project-date">June 2025</span>
-        <span class="toggle-icon">▼</span>
-    <div class="project-content">
+      <div class="project">
+        <!-- Dynamic World System -->
+        <div class="project-header collapsible">
+          <h3>Dynamic World System</h3>
+          <span class="project-date">June 2025</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+        <div class="project-content">
           <p>
             This system controls the time of day, weather, sun, and moon transitions
             in a dynamic world environment.
@@ -50,27 +49,23 @@ public class DynamicWorldSystem : MonoBehaviour {
     }
 }
           </code></pre>
-    </div>
+        </div>
       </div>
-    </div>
 
-    <div class="project">
-
-      <!-- Burnout Coffee Counter -->
-      <div class="project-header collapsible">
+      <div class="project">
+        <!-- Burnout Coffee Counter -->
+        <div class="project-header collapsible">
           <h3>Burnout: Game Timer System</h3>
           <span class="project-date">May 2025</span>
           <span class="toggle-icon">▼</span>
-        </button>
-    <div class="project-content">
+        </div>
+        <div class="project-content">
           <p>This script is used to track the current timer and calculate reductions in time when a coffee is picked up.</p>
           <pre><code class="language-csharp">
-
 // CountdownTimer.cs (snippet)
 public class CountdownTimer : MonoBehaviour 
-
-//Variable declarations
-
+{
+    //Variable declarations
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private EndGameScript endGameScript;
 
@@ -104,7 +99,6 @@ public class CountdownTimer : MonoBehaviour
                 timerText.gameObject.SetActive(false); // Hide timer text when finished
                 ShowGameOverScreen(); // Show game over screen when timer ends
             }
-
             else if (currentTime <= 0 && endGameScript.gameEnded == true) // If the game has already ended, do not show the game over screen again
             {
                 currentTime = 0; 
@@ -114,7 +108,6 @@ public class CountdownTimer : MonoBehaviour
             }
 
             UpdateHUD(); // Update the timer display
-
         }
     }
 
@@ -127,7 +120,6 @@ public class CountdownTimer : MonoBehaviour
 
     public void DrinkCoffee() // Method to handle coffee consumption
     {
-
         firstPersonController.UnlockSprintForDuration(10); // Unlock sprint for 10 seconds
         footstepSounds.ActivateCoffeeEffect(10f); // Activate coffee effect for 10 seconds (Increases footstep sound pitch to simulate energy boost)
         coffeeCount++; // Increment coffee count
@@ -138,12 +130,11 @@ public class CountdownTimer : MonoBehaviour
 
         //Debug.Log($"Coffee: {coffeeCount}, New Time: {adjustedStartTime:F1}s"); // Log the coffee count and new time for debugging
     }
-
-
+}
           </code></pre>
+
           <p>This script is used to detect when a coffee is picked up</p>
           <pre><code class="language-csharp">
-
 // CoffeePickup.cs (snippet)
 public class CoffeePickup : MonoBehaviour
 {
@@ -151,7 +142,7 @@ public class CoffeePickup : MonoBehaviour
 
     FootstepSounds footstepSounds; // Reference to FootstepSounds script for sound effects
 
-    [Header ("Audio Setup")]
+    [Header("Audio Setup")]
     public AudioClip pickupSound; // Assign in Inspector
     public float volume = 1.0f;
 
@@ -180,7 +171,6 @@ public class CoffeePickup : MonoBehaviour
 
         meshRenderer = GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -189,7 +179,7 @@ public class CoffeePickup : MonoBehaviour
         {
             StartCoroutine(CoffeeTextPopUp());
 
-            //Add any pickup sounds/animations or other behaviour(player stats increase, add coffee count to player)
+            // Add any pickup sounds/animations or other behaviour (player stats increase, add coffee count to player)
             AudioSource playerAudio = other.GetComponent<AudioSource>();
 
             meshRenderer.enabled = false; // Hide the coffee mesh renderer
@@ -202,9 +192,6 @@ public class CoffeePickup : MonoBehaviour
             {
                 countdownTimer.DrinkCoffee();
             }
-
-
-
         }
     }
 
@@ -214,7 +201,7 @@ public class CoffeePickup : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        coffeeTextObject.text = coffeeMessage; //Customisable text set in the Inspector for each coffee pickup. Useful to assign text for specific coffee pickups. e.g. the broom closet coffee text "who put this in the broom closet?!".
+        coffeeTextObject.text = coffeeMessage; // Customisable text set in the Inspector for each coffee pickup. Useful to assign text for specific coffee pickups. e.g. the broom closet coffee text "who put this in the broom closet?!".
 
         yield return new WaitForSeconds(5); // Wait for 5 seconds before hiding the text
 
@@ -224,28 +211,21 @@ public class CoffeePickup : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the coffee pickup object after displaying the text, the coffee pickup mesh is already hidden in void OnTriggerEnter, this just cleans up the objects in scene.
         }
-
     }
-
 }
-
           </code></pre>
-    </div>
+        </div>
       </div>
-    </div>
-      
+
       <!-- Add more systems here -->
 
     </section>
 
     <p><a href="index.html">← Back to Portfolio</a></p>
-  
-</div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
-
-<script src="projectcontent.js"></script>
-
+  <script src="projectcontent.js"></script>
 </body>
 </html>
