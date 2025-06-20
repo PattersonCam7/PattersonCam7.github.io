@@ -177,14 +177,21 @@
 <section id="contact">
   <h2>Contact</h2>
   <form id="contact-form">
-    <label for="name">Name:</label><br />
-    <input type="text" id="name" name="name" required /><br /><br />
+  <!-- Honeypot field -->
+  <div style="display: none;">
+    <label>Leave this empty:</label>
+    <input type="text" name="bot-field">
+  </div>
 
-    <label for="email">Email:</label><br />
-    <input type="email" id="email" name="email" required /><br /><br />
+  <!-- Real fields -->
+  <label for="name">Name:</label><br />
+  <input type="text" id="name" name="name" required /><br /><br />
 
-    <label for="message">Message:</label><br />
-    <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+  <label for="email">Email:</label><br />
+  <input type="email" id="email" name="email" required /><br /><br />
+
+  <label for="message">Message:</label><br />
+  <textarea id="message" name="message" rows="5" required></textarea><br /><br />
 
     <button type="submit">Send</button>
   </form>
@@ -199,12 +206,28 @@
     </footer>
   </div>
 
+  
 <script>
   const form = document.getElementById('contact-form');
   const responseMessage = document.getElementById('response-message');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    //Rate limit (10 seconds)
+    const lastSubmitTime = localStorage.getItem('lastSubmitTime');
+    const now = Date.now();
+    const tenSeconds = 10 * 1000;
+
+    if (lastSubmitTime && now - parseInt(lastSubmitTime) < tenSeconds) {
+      responseMessage.textContent = 'Please wait a few seconds before submitting again.';
+      return;
+    }
+
+    //Anti-spam
+    if (form.querySelector('input[name="bot-field"]').value !== "") {
+      return;
+    }
 
     const data = {
       name: form.name.value,
@@ -224,6 +247,9 @@
       if (response.ok) {
         responseMessage.textContent = 'Thank you for your message! I will get back to you soon.';
         form.reset();
+
+        // Save the time of submission
+        localStorage.setItem('lastSubmitTime', now.toString());
       } else {
         responseMessage.textContent = 'Oops! Something went wrong. Please try again.';
       }
@@ -232,6 +258,7 @@
     }
   });
 </script>
+
 
   <script>
     // Toggle collapsible project content
