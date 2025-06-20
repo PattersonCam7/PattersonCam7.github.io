@@ -263,7 +263,7 @@ footer {
 
 /* When active, show content */
 .accordion-content.active {
-  max-height: 1000px; /* large enough for content */
+  /*max-height: 1000px; /* large enough for content */
   padding: 15px 18px;
 }
 

@@ -192,7 +192,7 @@ public class CoffeePickup : MonoBehaviour
 
             playerAudio.PlayOneShot(pickupSound);
 
-            // Tell the timer a coffee was picked up
+            // Tell the timer a coffee was picked up to calculate the new time
             if (countdownTimer != null)
             {
                 countdownTimer.DrinkCoffee();
