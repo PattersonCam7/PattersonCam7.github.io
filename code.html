@@ -19,6 +19,17 @@
       <a href="contact.html#contact">Contact</a>
     </nav>
 
+  <div class="page-wrapper">
+    <nav class="sidebar-nav">
+    <ul>
+      <li><a href="#dynamic-world-system">Dynamic World System</a></li>
+      <li><a href="#burnout-timer">Burnout Timer System</a></li>
+      <li><a href="#burnout-coffeepickuo">Burnout Coffee Pickup</a></li>
+      
+    </ul>
+  </nav>
+
+  <main class="content-area">
     <!-- Projects Section -->
     <section id="projects">
       <h2>Projects</h2>
@@ -27,7 +38,7 @@
       <div class="project">
         <!-- Dynamic World System -->
         <div class="project-header collapsible">
-          <h3>Horror Fishing: Dynamic World System</h3>
+          <h3 id="dynamic-world-system">Horror Fishing: Dynamic World System</h3>
           <span class="project-date">June 2025</span>
           <span class="toggle-icon">▼</span>
         </div>
@@ -55,7 +66,7 @@ public class DynamicWorldSystem : MonoBehaviour {
       <div class="project">
         <!-- Burnout Coffee Counter -->
         <div class="project-header collapsible">
-          <h3>Burnout: Game Timer System</h3>
+          <h3 id="burnout-timer">Burnout: Game Timer System</h3>
           <span class="project-date">May 2025</span>
           <span class="toggle-icon">▼</span>
         </div>
@@ -132,7 +143,7 @@ public class CountdownTimer : MonoBehaviour
     }
 }
           </code></pre>
-          <h3>Burnout: Coffee Pickup</h3>
+          <h3 id="burnout-coffeepickup">Burnout: Coffee Pickup</h3>
           <p>This script is used to detect when a coffee is picked up</p>
           <pre><code class="language-csharp">
 // CoffeePickup.cs (snippet)
