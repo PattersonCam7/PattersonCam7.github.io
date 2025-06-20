@@ -3,71 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Code Showcase – Cameron Patterson</title>
-  
-  <!-- Custom CSS -->
+  <title>Code Showcase - Cameron Patterson</title>
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Prism.js Theme -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" />
+  <!-- Prism.js syntax highlighting -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
 </head>
-
 <body>
   <div class="container">
-    
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-      <a href="code.html">Code Showcase</a>
-    </nav>
+    <h1>Code Showcase</h1>
+    <p>Click a section to expand and view the system breakdowns.</p>
 
-    <header>
-      <h1>Dynamic World System</h1>
-      <p>A system that controls time of day, weather, sunlight, and moon phases in a dynamic open-world environment.</p>
-    </header>
-
-    <main>
-      <section>
-        <h2>Core System</h2>
-        <pre><code class="language-csharp">
-// DynamicWorldSystem.cs
+    <div class="accordion">
+      <!-- Dynamic World System -->
+      <div class="accordion-item">
+        <button class="accordion-header">Dynamic World System</button>
+        <div class="accordion-content">
+          <p>This system controls the time of day, weather, sun, and moon transitions in a dynamic world environment.</p>
+          <pre><code class="language-csharp">
+// DynamicWorldSystem.cs (snippet)
 public class DynamicWorldSystem : MonoBehaviour {
     public static DynamicWorldSystem Instance { get; private set; }
     public TimeOfDaySystem timeOfDaySystem = new TimeOfDaySystem();
     public WeatherSystem weatherSystem = new WeatherSystem();
-
+    
     void Update() {
         timeOfDaySystem.UpdateTime();
         weatherSystem.UpdateWeather(timeOfDaySystem.CurrentTimeOfDay);
     }
 }
-        </code></pre>
-      </section>
+          </code></pre>
+        </div>
+      </div>
 
-      <section>
-        <h2>Time of Day Subsystem</h2>
-        <pre><code class="language-csharp">
-[System.Serializable]
-public class TimeOfDaySystem {
-    private float dayLengthInSeconds = 600f;
-    private float currentTimeOfDay;
+      <!-- Burnout Coffee Counter -->
+      <div class="accordion-item">
+        <button class="accordion-header">Burnout: Coffee Count System</button>
+        <div class="accordion-content">
+          <p>This script tracks the number of coffees picked up and updates the UI.</p>
+          <pre><code class="language-csharp">
+// CoffeeCountManager.cs
+public class CoffeeCounter : MonoBehaviour {
+    public int coffeeCount = 0;
 
-    public void UpdateTime() {
-        CurrentTimeOfDay += Time.deltaTime * TimeScale;
+    public void CollectCoffee() {
+        coffeeCount++;
+        UpdateUI();
+    }
+
+    private void UpdateUI() {
+        // UI logic to update coffee count display
     }
 }
-        </code></pre>
-      </section>
-    </main>
+          </code></pre>
+        </div>
+      </div>
 
-    <footer>
-      <p><a href="index.html">← Back to Portfolio</a></p>
-    </footer>
+      <!-- Add more systems here -->
+    </div>
+
+    <p><a href="index.html">← Back to Portfolio</a></p>
   </div>
 
-  <!-- Prism.js Scripts -->
+  <!-- Prism.js -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+
+  <!-- Accordion toggle script -->
+  <script>
+    const headers = document.querySelectorAll('.accordion-header');
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const isOpen = content.style.display === 'block';
+
+        // Close all
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+
+        // Toggle selected
+        content.style.display = isOpen ? 'none' : 'block';
+      });
+    });
+  </script>
 </body>
 </html>

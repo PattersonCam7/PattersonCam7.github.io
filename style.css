@@ -220,3 +220,47 @@ a[href="index.html"] {
 a[href="index.html"]:hover {
   text-decoration: underline;
 }
+
+.accordion {
+  margin-top: 2rem;
+}
+
+.accordion-item {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  background-color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.accordion-header:hover {
+  background-color: #e6e6e6;
+}
+
+.accordion-content {
+  display: none;
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+.accordion-content pre {
+  background-color: #2d2d2d;
+  color: #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
