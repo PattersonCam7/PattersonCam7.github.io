@@ -45,7 +45,6 @@ h1, h2, h3 {
    LAYOUT
 ======================= */
 .container {
-  max-width: auto;
   margin: 0 auto;
   padding: 25px;
   background: rgba(255, 255, 255, 0.9);
