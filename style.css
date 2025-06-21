@@ -57,18 +57,18 @@ h1, h2, h3 {
 
 .page-wrapper {
   display: flex;
-  gap: 2.5rem;
-  min-height: 0; /* Remove fixed viewport height */
-  height: auto; /* Allow natural growth */
+  align-items: flex-start; /* Align items to the top */
+  gap: 2rem;
+  flex-wrap: nowrap; /* Ensure no wrapping on smaller screens */
 }
 
 .content-area {
-  margin-left: 220px;
-  padding: 25px;
   flex-grow: 1;
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
-  max-height: calc(100vh - 50px); /* Adjust based on header/footer height */
+  padding: 25px;
+  overflow-y: auto;
+  max-height: calc(100vh - 50px); /* Adjust as needed for headers/footers */
 }
+
 
 /* =======================
    TYPOGRAPHY
@@ -146,16 +146,21 @@ h3 {
 
 /* Sidebar styles */
 .sidebar-nav {
-  width: min-content; /* Adjust width to fit content */
-  height: fit-content;
+  flex: 0 0 220px; /* Fixed width */
+  min-height: 100vh; /* Full height of viewport */
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+
   overflow-y: auto;
-  border: var(--card-border);
   padding: 1.5rem;
   background: var(--card-bg);
   font-family: 'Arial', sans-serif;
+  border: var(--card-border);
   border-radius: 0 8px 8px 0;
   box-shadow: var(--shadow-light);
 }
+
 
 .sidebar-nav ul {
   list-style: none;
@@ -674,8 +679,8 @@ footer {
   }
 
   .sidebar-nav {
-    width: 100%;
-    margin-bottom: 2rem;
+    position: relative; /* Avoid sticky jank on smaller screens */
+    min-height: auto;
   }
 
   .page-wrapper {
@@ -683,9 +688,8 @@ footer {
   }
 
   .content-area {
-    margin-left: 0;
-    padding: 20px;
     max-height: none;
+    padding: 20px;
   }
 
   #contact {
