@@ -202,27 +202,19 @@ html {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
   gap: 1.5rem;
-  width: 100%;
-  min-height: 0;
-}
-
-/* Target items in column 2 (auto-sized column) */
-.projects-grid > *:nth-child(3n + 2) {
-  justify-self: center;
-  width: max-content; /* optional for centering effect */
+  align-items: stretch; /* stretch grid items vertically */
 }
 
 .project-row {
-  /*display: contents; /* Allows children to be placed directly in the grid */
-  background-color: var(--card-bg); /* Moved from .project */
-  border-radius: 10px;
-  box-shadow: var(--shadow-light); /* Moved from .project */
-  padding: 1.25rem 1.5rem; /* Moved from .project */
-  transition: all var(--transition-speed) ease;
-  position: relative; /* For hover effects */
-  min-height: 200px; /* Moved from .project */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* fill full grid cell height */
+  border: 1px solid #ccc; /* for visual debugging */
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .project-row:hover {
