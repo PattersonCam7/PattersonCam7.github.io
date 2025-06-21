@@ -8,14 +8,32 @@
 }
 
 /* =======================
+   CUSTOM PROPERTIES
+======================= */
+:root {
+  --primary-color: #007acc;
+  --text-color: #333;
+  --secondary-text-color: #555;
+  --border-color: #ddd;
+  --background-color: #f9f9f9;
+  --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow-hover: 0 4px 8px rgba(0,0,0,0.15);
+  --transition-speed: 0.3s;
+}
+
+/* =======================
    BASE STYLES
 ======================= */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
   line-height: 1.6;
   min-height: 100vh;
+}
+
+h1, h2, h3 {
+  margin-bottom: 0.5rem;
 }
 
 /* =======================
@@ -27,25 +45,35 @@ body {
   padding: 20px;
 }
 
+.page-wrapper {
+  display: flex;
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+.content-area {
+  flex-grow: 1;
+  max-width: 900px;
+  min-width: 0; /* Prevent overflow */
+}
+
 /* =======================
    TYPOGRAPHY
 ======================= */
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
   text-align: center;
 }
 
 h2 {
   font-size: 1.8rem;
   margin: 3rem 0 1rem;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid var(--border-color);
   padding-bottom: 0.3rem;
 }
 
 h3 {
   font-size: 1.4rem;
-  margin: 0;
   font-weight: 600;
 }
 
@@ -62,36 +90,26 @@ nav a {
   text-decoration: none;
   color: #000000;
   font-weight: bold;
-  transition: color 0.3s ease;
 }
 
 nav a:hover,
 nav a:focus {
-  color: #005999;
+  color: var(--primary-color);
   text-decoration: underline;
-  outline: none;
-}
-
-/* Layout wrapper to hold sidebar and content */
-.page-wrapper {
-  display: flex;
-  gap: 2rem; /* space between sidebar and main */
-  min-height: 100vh;
+  outline: 2px solid var(--primary-color);
 }
 
 /* Sidebar styles */
 .sidebar-nav {
-  position:static; /* make sidebar static to avoid fixed positioning */
-  flex: 0 0 auto; /* prevent sidebar from growing or shrinking */
-  top: 2rem; /* adjust this to match the distance from viewport top to first h3 */
-  align-items: left; /* align items to the left */;
-  border: 1px solid #ddd;
+  position: static;
+  flex: 0 0 auto;
+  top: 2rem;
+  border: 1px solid var(--border-color);
   padding: 1rem;
-  background: #f9f9f9;
+  background: var(--background-color);
   font-family: Arial, sans-serif;
 }
 
-/* Sidebar list */
 .sidebar-nav ul {
   list-style: none;
   padding-left: 0;
@@ -103,26 +121,19 @@ nav a:focus {
 }
 
 .sidebar-nav a {
-  color: #007acc;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 600;
   display: block;
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  transition: background-color 0.3s ease;
 }
 
 .sidebar-nav a:hover,
 .sidebar-nav a:focus {
-  background-color: #007acc;
+  background-color: var(--primary-color);
   color: white;
-  outline: none;
-}
-
-/* Content area */
-.content-area {
-  flex-grow: 1;
-  max-width: 900px;
+  outline: 2px solid var(--primary-color);
 }
 
 /* Optional: smooth scroll behavior */
@@ -136,9 +147,14 @@ html {
 .project {
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-light);
   margin-bottom: 2.5rem;
   padding: 1rem 1.25rem;
+  transition: box-shadow var(--transition-speed) ease;
+}
+
+.project:hover {
+  box-shadow: var(--shadow-hover);
 }
 
 /* Project Header Button */
@@ -153,15 +169,15 @@ html {
   align-items: center;
   font-weight: 700;
   font-size: 1.25rem;
-  color: #222;
+  color: var(--text-color);
   user-select: none;
-  transition: color 0.3s ease;
+  transition: color var(--transition-speed) ease;
 }
 
 .project-header:hover,
 .project-header:focus {
-  color: #007acc;
-  outline: none;
+  color: var(--primary-color);
+  outline: 2px solid var(--primary-color);
 }
 
 .project-header a {
@@ -173,7 +189,7 @@ html {
 .project-header a:hover,
 .project-header a:focus {
   text-decoration: underline;
-  outline: none;
+  outline: 2px solid var(--primary-color);
 }
 
 .project-date {
@@ -182,15 +198,16 @@ html {
   color: #666;
   margin-left: 1rem;
   white-space: nowrap;
+  min-height: 0; /* Accessibility fix */
 }
 
 /* Toggle icon */
 .toggle-icon {
   font-size: 1.2rem;
   margin-left: 0.75rem;
-  color: #007acc;
+  color: var(--primary-color);
   user-select: none;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-speed) ease;
 }
 
 /* Rotate icon when active (JS adds .active to header) */
@@ -202,38 +219,37 @@ html {
    PROJECT CONTENT (collapsible)
 ======================= */
 .project-content {
-  display:none;
+  display: none;
   margin-top: 1rem;
   padding-top: 0.75rem;
-  border-top: 1px solid #ddd;
-  animation: fadeIn 0.3s ease forwards;
+  border-top: 1px solid var(--border-color);
+  animation: fadeIn var(--transition-speed) ease forwards;
 }
 
-.project-content img {
-  max-width: 100%;      /* Make sure image never exceeds container width */
-  height: auto;         /* Keep aspect ratio */
-  display: block;       /* Remove inline spacing */
-  margin: 0 auto;       /* Optional: center image horizontally */
-  max-height: 300px;    /* Optional: limit max height to keep all similar */
-  object-fit: contain;  /* Ensure image scales properly within bounds */
+.project-content img,
+.project-content picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  max-height: 300px;
+  object-fit: contain;
   box-sizing: border-box;
 }
 
-
-/* Show content when active */
 .project-content.active {
   display: block;
-  animation: fadeIn 0.3s ease forwards;
+  animation: fadeIn var(--transition-speed) ease forwards;
 }
 
 .project-textdescription {
   margin-top: 1rem;
   font-size: 1rem;
   line-height: 1.5;
-  color: #555;
+  color: var(--secondary-text-color);
 }
 
-.language-csharp{
+.language-csharp {
   max-width: 100%;
   height: auto;
 }
@@ -241,18 +257,18 @@ html {
 /* =======================
    CAROUSEL
 ======================= */
-.carousel-inner {
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-
 .carousel {
   position: relative;
   max-width: 100%;
   overflow: hidden;
   margin: 1rem 0 2rem;
   border-radius: 10px;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 
 .carousel-image {
@@ -283,14 +299,14 @@ html {
   cursor: pointer;
   border-radius: 4px;
   user-select: none;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-speed) ease;
   z-index: 10;
 }
 
 .carousel-button:hover,
 .carousel-button:focus {
   background-color: rgba(0, 0, 0, 0.8);
-  outline: none;
+  outline: 2px solid #fff;
 }
 
 .carousel-button.prev {
@@ -310,13 +326,9 @@ html {
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-light);
   margin-bottom: 1.5rem;
-  
-  /* Optional: smooth scaling */
-  transition: box-shadow 0.3s ease;
-  
-  /* Optional: make sure wrapper doesn't shrink too small */
+  transition: box-shadow var(--transition-speed) ease;
   min-height: 150px;
 }
 
@@ -325,14 +337,8 @@ html {
   height: 100%;
   border: 0;
   object-fit: contain;
-
-  /* Optional: disable pointer events if overlay needed, otherwise remove */
-  pointer-events: auto;
-
-  /* Optional: for better rendering on some browsers */
   display: block;
 }
-
 
 /* =======================
    CONTACT FORM
@@ -352,43 +358,43 @@ html {
   padding: 0.5rem;
   margin-top: 0.25rem;
   margin-bottom: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 5px;
   font-size: 1rem;
   resize: vertical;
-  transition: border-color 0.3s ease;
+  transition: border-color var(--transition-speed) ease;
 }
 
 #contact input[type="text"]:focus,
 #contact input[type="email"]:focus,
 #contact textarea:focus {
-  border-color: #007acc;
+  border-color: var(--primary-color);
   outline: none;
   box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
 }
 
 #contact button[type="submit"] {
-  background-color: #007acc;
+  background-color: var(--primary-color);
   color: white;
   font-weight: bold;
   padding: 0.7rem 1.5rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-speed) ease;
 }
 
 #contact button[type="submit"]:hover,
 #contact button[type="submit"]:focus {
   background-color: #005999;
-  outline: none;
+  outline: 2px solid var(--primary-color);
 }
 
 /* Response message */
 #response-message {
   margin-top: 0.75rem;
   font-weight: 600;
-  color: #007acc;
+  color: var(--primary-color);
   min-height: 1.25rem;
 }
 
@@ -399,7 +405,7 @@ footer {
   text-align: center;
   margin-top: 4rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--border-color);
   font-size: 0.9rem;
   color: #999;
 }
@@ -438,11 +444,21 @@ footer {
     font-size: 1.1rem;
   }
 
-  .project-content img {
-    max-height: 200px; /* Reduce max height for smaller screens */
+  .project-content img,
+  .project-content picture {
+    max-height: 200px;
   }
 }
+
 @media (max-width: 600px) {
+  .page-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar-nav {
+    width: 100%;
+  }
+
   .video-wrapper {
     max-height: 200px;
   }
