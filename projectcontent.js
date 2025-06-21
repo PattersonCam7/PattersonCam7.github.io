@@ -162,7 +162,10 @@ function closeLightbox() {
 // Close lightbox on close button click
 if (closeBtn) {
   closeBtn.addEventListener('click', closeLightbox);
+} else {
+  console.warn('Close button #lightbox-close not found in DOM.');
 }
+
 
 // Close lightbox on clicking outside image
 lightbox.addEventListener('click', e => {
