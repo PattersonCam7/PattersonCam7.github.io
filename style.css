@@ -12,68 +12,97 @@
 ======================= */
 :root {
   --primary-color: #007acc;
+  --primary-gradient: linear-gradient(135deg, #007acc, #005f99);
   --text-color: #333;
   --secondary-text-color: #555;
-  --border-color: #ddd;
-  --background-color: #f9f9f9;
-  --shadow-light: 0 2px 4px rgba(0,0,0,0.1);
-  --shadow-hover: 0 4px 8px rgba(0,0,0,0.15);
+  --border-color: #e0e0e0;
+  --background-color: #f5f7fa;
+  --shadow-light: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
   --transition-speed: 0.3s;
+  --card-bg: #ffffff;
+  --card-border: 1px solid #e0e0e0;
 }
 
 /* =======================
    BASE STYLES
 ======================= */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-family: 'Arial', sans-serif;
 }
 
 /* =======================
    LAYOUT
 ======================= */
 .container {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
 }
 
 .page-wrapper {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   min-height: 100vh;
 }
 
 .content-area {
   margin-left: 220px;
-  padding: 20px;
+  padding: 25px;
+  flex-grow: 1;
 }
 
 /* =======================
    TYPOGRAPHY
 ======================= */
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   text-align: center;
+  color: var(--primary-color);
+  padding: 10px 0;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  font-size: 1.8rem;
-  margin: 3rem 0 1rem;
-  border-bottom: 2px solid var(--border-color);
-  padding-bottom: 0.3rem;
+  font-size: 2rem;
+  margin: 3.5rem 0 1.25rem;
+  border-bottom: 3px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  color: var(--text-color);
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--primary-color);
 }
 
 h3 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 /* =======================
@@ -81,14 +110,20 @@ h3 {
 ======================= */
 nav {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 1rem 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
 }
 
 nav a {
-  margin: 0 1rem;
+  margin: 0 1.5rem;
   text-decoration: none;
-  color: #000000;
-  font-weight: bold;
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: all var(--transition-speed) ease;
 }
 
 nav a:hover,
@@ -96,6 +131,8 @@ nav a:focus {
   color: var(--primary-color);
   text-decoration: underline;
   outline: 2px solid var(--primary-color);
+  background: rgba(0, 122, 204, 0.1);
+  border-radius: 4px;
 }
 
 /* Sidebar styles */
@@ -103,13 +140,15 @@ nav a:focus {
   position: fixed;
   top: 2rem;
   left: 0;
-  width: 200px;
+  width: 220px;
   height: calc(100vh - 2rem);
   overflow-y: auto;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  background: #f9f9f9;
-  font-family: Arial, sans-serif;
+  border: var(--card-border);
+  padding: 1.5rem;
+  background: var(--card-bg);
+  font-family: 'Arial', sans-serif;
+  border-radius: 0 8px 8px 0;
+  box-shadow: var(--shadow-light);
 }
 
 .sidebar-nav ul {
@@ -119,7 +158,7 @@ nav a:focus {
 }
 
 .sidebar-nav li + li {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 .sidebar-nav a {
@@ -127,14 +166,15 @@ nav a:focus {
   text-decoration: none;
   font-weight: 600;
   display: block;
-  padding: 0.3rem 0.6rem;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
+  transition: all var(--transition-speed) ease;
 }
 
 .sidebar-nav a:hover,
 .sidebar-nav a:focus {
-  background-color: var(--primary-color);
-  color: white;
+  background: var(--primary-gradient);
+  color: #fff;
   outline: 2px solid var(--primary-color);
 }
 
@@ -148,26 +188,27 @@ html {
 ======================= */
 .projects-grid {
   display: grid;
-  grid-template-columns: 1fr auto; /* 1fr for project name, auto for date section */
-  gap: 1rem; /* Space between rows */
-  width: 100%; /* Ensure it takes full width of container */
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .project-row {
-  display: contents; /* Allows children to be placed directly in the grid */
+  display: contents;
 }
 
 .project {
-  background-color: #fff;
-  border-radius: 8px;
+  background-color: var(--card-bg);
+  border-radius: 10px;
   box-shadow: var(--shadow-light);
   margin-bottom: 2.5rem;
-  padding: 1rem 1.25rem;
-  transition: box-shadow var(--transition-speed) ease;
+  padding: 1.25rem 1.5rem;
+  transition: all var(--transition-speed) ease;
 }
 
 .project:hover {
   box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
 }
 
 /* Project Header Button */
@@ -177,75 +218,68 @@ html {
   cursor: pointer;
   padding: 0.75rem 0;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   color: var(--text-color);
   user-select: none;
   transition: color var(--transition-speed) ease;
-  display: contents; /* Allows children to be grid-placed */
+  display: contents;
 }
 
 .project-header:hover,
 .project-header:focus {
   color: var(--primary-color);
-  /*outline: 2px solid var(--primary-color);*/ /* Commented out for accessibility consideration */
 }
 
 .project-header a {
   color: inherit;
   text-decoration: none;
+  transition: color var(--transition-speed) ease;
 }
 
 .project-header a:hover,
 .project-header a:focus {
   text-decoration: underline;
+  color: var(--primary-color);
   outline: 2px solid var(--primary-color);
-}
-
-.project-header.collapsible {
-background-color: #fff;
-  border-radius: 8px;
-  box-shadow: var(--shadow-light);
-  padding: 1rem 1.25rem;
-  transition: box-shadow var(--transition-speed) ease;
-}
-
-.project-header.collapsible:hover {
-  box-shadow: var(--shadow-hover);
 }
 
 /* Style for the right-aligned date and toggle section */
 .project-header.right {
-  grid-column: 2; /* Place in the second column */
+  grid-column: 2;
   display: flex;
-  justify-content: flex-end; /* Align content to the right within the cell */
+  justify-content: flex-end;
   align-items: center;
-  min-width: 120px; /* Ensure consistent width for date alignment */
+  min-width: 130px;
+  padding: 0.25rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
 }
 
 .project-name {
-  grid-column: 1; /* Place in the first column */
+  grid-column: 1;
   margin: 0;
+  padding: 0.25rem;
 }
 
 .project-date {
   flex-shrink: 0;
-  text-align: right; /* Align text within the span to the right */
-  color: #666;
-  margin-right: 0.5rem;
+  text-align: right;
+  color: var(--secondary-text-color);
+  margin-right: 0.75rem;
   white-space: nowrap;
-  min-height: 0; /* Accessibility fix */
+  font-weight: 500;
+  min-height: 0;
 }
 
 /* Toggle icon */
 .toggle-icon {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-left: 0.75rem;
   color: var(--primary-color);
   user-select: none;
   transition: transform var(--transition-speed) ease;
 }
 
-/* Rotate icon when active (JS adds .active to header) */
 .project-header.active .toggle-icon {
   transform: rotate(180deg);
 }
@@ -255,10 +289,14 @@ background-color: #fff;
 ======================= */
 .project-content {
   display: none;
-  margin-top: 1rem;
-  padding-top: 0.75rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border-color);
-  animation: fadeIn var(--transition-speed) ease forwards;
+  animation: fadeIn var(--transition-speed) ease-in-out;
+}
+
+.project-content.active {
+  display: block;
 }
 
 .project-content img,
@@ -267,21 +305,26 @@ background-color: #fff;
   height: auto;
   display: block;
   margin: 0 auto;
-  max-height: 300px;
+  max-height: 350px;
   object-fit: contain;
-  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  transition: transform var(--transition-speed) ease;
 }
 
-.project-content.active {
-  display: block;
-  animation: fadeIn var(--transition-speed) ease forwards;
+.project-content img:hover,
+.project-content picture:hover {
+  transform: scale(1.05);
 }
 
 .project-textdescription {
-  margin-top: 1rem;
-  font-size: 1rem;
-  line-height: 1.5;
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+  line-height: 1.7;
   color: var(--secondary-text-color);
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 6px;
 }
 
 .language-csharp {
@@ -296,8 +339,10 @@ background-color: #fff;
   position: relative;
   max-width: 100%;
   overflow: hidden;
-  margin: 1rem 0 2rem;
-  border-radius: 10px;
+  margin: 1.5rem 0 2.5rem;
+  border-radius: 12px;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-light);
 }
 
 .carousel-inner {
@@ -310,7 +355,7 @@ background-color: #fff;
   display: none;
   width: 100%;
   height: auto;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: opacity 0.5s ease;
   user-select: none;
   object-fit: contain;
@@ -326,22 +371,23 @@ background-color: #fff;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   border: none;
   color: #fff;
-  padding: 0.5rem 0.75rem;
-  font-size: 1.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 50%;
   user-select: none;
-  transition: background-color var(--transition-speed) ease;
+  transition: all var(--transition-speed) ease;
   z-index: 10;
 }
 
 .carousel-button:hover,
 .carousel-button:focus {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   outline: 2px solid #fff;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-button.prev {
@@ -357,14 +403,15 @@ background-color: #fff;
 ======================= */
 .video-wrapper {
   width: 100%;
-  max-height: 300px;
+  max-height: 350px;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: var(--shadow-light);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   transition: box-shadow var(--transition-speed) ease;
-  min-height: 150px;
+  min-height: 180px;
+  background: var(--card-bg);
 }
 
 .video-wrapper iframe {
@@ -373,31 +420,40 @@ background-color: #fff;
   border: 0;
   object-fit: contain;
   display: block;
+  border-radius: 10px;
 }
 
 /* =======================
    CONTACT FORM
 ======================= */
 #contact {
-  margin-top: 3rem;
+  margin-top: 4rem;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
 }
 
 #contact label {
   font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  display: block;
 }
 
 #contact input[type="text"],
 #contact input[type="email"],
 #contact textarea {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  font-size: 1rem;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1.1rem;
   resize: vertical;
-  transition: border-color var(--transition-speed) ease;
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  background: #fff;
 }
 
 #contact input[type="text"]:focus,
@@ -405,32 +461,38 @@ background-color: #fff;
 #contact textarea:focus {
   border-color: var(--primary-color);
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
+  box-shadow: 0 0 8px rgba(0, 122, 204, 0.3);
 }
 
 #contact button[type="submit"] {
-  background-color: var(--primary-color);
+  background: var(--primary-gradient);
   color: white;
   font-weight: bold;
-  padding: 0.7rem 1.5rem;
+  padding: 0.9rem 2rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color var(--transition-speed) ease;
+  transition: all var(--transition-speed) ease;
+  font-size: 1.1rem;
 }
 
 #contact button[type="submit"]:hover,
 #contact button[type="submit"]:focus {
-  background-color: #005999;
+  background: linear-gradient(135deg, #005f99, #003d66);
   outline: 2px solid var(--primary-color);
+  transform: translateY(-2px);
 }
 
 /* Response message */
 #response-message {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   font-weight: 600;
   color: var(--primary-color);
-  min-height: 1.25rem;
+  min-height: 1.5rem;
+  padding: 0.5rem;
+  background: rgba(0, 122, 204, 0.1);
+  border-radius: 4px;
+  text-align: center;
 }
 
 /* =======================
@@ -438,11 +500,14 @@ background-color: #fff;
 ======================= */
 footer {
   text-align: center;
-  margin-top: 4rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
-  font-size: 0.9rem;
-  color: #999;
+  margin-top: 4.5rem;
+  padding: 2rem 0;
+  border-top: 2px solid var(--border-color);
+  font-size: 1rem;
+  color: var(--secondary-text-color);
+  background: var(--card-bg);
+  border-radius: 8px 8px 0 0;
+  box-shadow: var(--shadow-light);
 }
 
 /* =======================
@@ -451,7 +516,7 @@ footer {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
@@ -464,30 +529,35 @@ footer {
 ======================= */
 @media (max-width: 900px) {
   .container {
-    padding: 15px;
+    padding: 20px;
+    max-width: 800px;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   h2 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   .project-header {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .project-content img,
   .project-content picture {
-    max-height: 200px;
+    max-height: 250px;
+  }
+
+  .sidebar-nav {
+    width: 180px;
   }
 }
 
 @media (max-width: 600px) {
   .projects-grid {
-    display: block; /* Stack items vertically */
+    display: block;
   }
 
   .project-row {
@@ -497,8 +567,8 @@ footer {
 
   .project-header.right {
     justify-content: flex-end;
-    margin-top: 0.5rem;
-    width: 100%; /* Ensure full width for right alignment */
+    margin-top: 0.75rem;
+    width: 100%;
   }
 
   .page-wrapper {
@@ -509,13 +579,31 @@ footer {
     position: static;
     width: 100%;
     height: auto;
+    padding: 1rem;
   }
 
   .content-area {
     margin-left: 0;
+    padding: 15px;
+  }
+
+  .container {
+    padding: 15px;
   }
 
   .video-wrapper {
     max-height: 200px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  nav a {
+    margin: 0 1rem;
   }
 }
