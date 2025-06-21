@@ -200,8 +200,6 @@ html {
 
 .project-row {
   display: contents;
-  box-shadow: var(--shadow-light);
-  border-top: 2px solid var(--border-color);
 }
 
 .project {
@@ -250,6 +248,11 @@ html {
   text-decoration: underline;
   color: var(--primary-color);
   outline: 2px solid var(--primary-color);
+}
+
+.project-header.collapsible{
+  box-shadow: var(--shadow-light);
+  border-top: 2px solid var(--border-color);
 }
 
 /* Style for the right-aligned date and toggle section */
