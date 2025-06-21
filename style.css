@@ -209,7 +209,7 @@ html {
 }
 
 .project-row {
-  display: contents; /* Allows children to be placed directly in the grid */
+  /*display: contents; /* Allows children to be placed directly in the grid */
   background-color: var(--card-bg); /* Moved from .project */
   border-radius: 10px;
   box-shadow: var(--shadow-light); /* Moved from .project */
