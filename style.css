@@ -198,7 +198,7 @@ html {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+  grid-template-columns: repeat(1, 1fr); /* 3 equal columns */
   gap: 1.5rem;
   align-items: stretch; /* stretch grid items vertically */
 }
