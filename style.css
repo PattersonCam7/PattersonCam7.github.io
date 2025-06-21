@@ -77,7 +77,6 @@ nav a:focus {
   display: flex;
   gap: 2rem; /* space between sidebar and main */
   min-height: 100vh;
-  align-items: left; /* align items to the top */
 }
 
 /* Sidebar styles */
@@ -85,6 +84,7 @@ nav a:focus {
   position:static; /* make sidebar static to avoid fixed positioning */
   flex: 0 0 auto; /* prevent sidebar from growing or shrinking */
   top: 2rem; /* adjust this to match the distance from viewport top to first h3 */
+  align-items:left; /* align items to the left */;
   width: 220px;
   max-height: calc(100vh - 4rem);
   overflow-y: auto;
