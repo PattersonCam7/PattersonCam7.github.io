@@ -22,27 +22,29 @@
 
     <!-- Contact Section -->
     <section id="contact">
-      <h2>Contact</h2>
-      <form id="contact-form">
-        <!-- Honeypot field -->
-        <div style="display: none;">
-          <label>Leave this empty:</label>
-          <input type="text" name="bot-field" />
-        </div>
+      <div class="contact-wrapper">
+        <h2>Contact</h2>
+        <form id="contact-form">
+          <!-- Honeypot field -->
+          <div style="display: none;">
+            <label>Leave this empty:</label>
+            <input type="text" name="bot-field" />
+          </div>
 
-        <!-- Real fields -->
-        <label for="name">Name:</label><br />
-        <input type="text" id="name" name="name" required /><br /><br />
+          <!-- Real fields -->
+          <label for="name">Name:</label><br />
+          <input type="text" id="name" name="name" required /><br /><br />
 
-        <label for="email">Email:</label><br />
-        <input type="email" id="email" name="email" required /><br /><br />
+          <label for="email">Email:</label><br />
+          <input type="email" id="email" name="email" required /><br /><br />
 
-        <label for="message">Message:</label><br />
-        <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+          <label for="message">Message:</label><br />
+          <textarea id="message" name="message" rows="5" required></textarea><br /><br />
 
-        <button type="submit">Send</button>
-      </form>
-      <p id="response-message"></p>
+          <button type="submit">Send</button>
+        </form>
+        <p id="response-message"></p>
+      </div>
     </section>
   </div>
 

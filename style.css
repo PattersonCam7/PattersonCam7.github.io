@@ -456,8 +456,13 @@ html {
   background: var(--card-bg);
   border-radius: 12px;
   box-shadow: var(--shadow-light);
-  min-width: 200px;
-  max-width: 900px;
+}
+
+.contact-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* or whatever height you want */
 }
 
 #contact label {
