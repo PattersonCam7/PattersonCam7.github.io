@@ -658,10 +658,12 @@ footer {
     display: block;
   }
 
+  /*
   .project-row {
     display: flex;
     flex-direction: column;
   }
+    */
 
   .project-header.right {
     justify-content: flex-end;
