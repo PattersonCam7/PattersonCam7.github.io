@@ -200,10 +200,8 @@ html {
 
 .project-row {
   display: contents;
-  background: var(--card-bg);
-  border-radius: 10px;
   box-shadow: var(--shadow-light);
-  transition: all var(--transition-speed) ease;
+  border-top: 2px solid var(--border-color);
 }
 
 .project {
@@ -525,12 +523,12 @@ footer {
   text-align: center;
   margin-top: 4.5rem;
   padding: 2rem 0;
-  border-top: 2px solid var(--border-color);
   font-size: 1rem;
   color: var(--secondary-text-color);
   background: var(--card-bg);
   border-radius: 8px 8px 0 0;
   box-shadow: var(--shadow-light);
+  border-top: 2px solid var(--border-color);
 }
 
 /* =======================
