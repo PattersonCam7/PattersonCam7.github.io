@@ -140,8 +140,8 @@ h3 {
 
 /* Sidebar styles */
 .sidebar-nav {
-  width: 220px;
-  height: calc(100vh - 2rem);
+  width: min-content; /* Adjust width to fit content */
+  height: fit-content;
   overflow-y: auto;
   border: var(--card-border);
   padding: 1.5rem;
