@@ -221,7 +221,7 @@ html {
   box-shadow: var(--shadow-light); /* Moved from .project */
   padding: 1.25rem 1.5rem; /* Moved from .project */
   transition: all var(--transition-speed) ease;
-  position: relative;
+  position: relative; /* For hover effects */
   min-height: 200px; /* Moved from .project */
 }
 
