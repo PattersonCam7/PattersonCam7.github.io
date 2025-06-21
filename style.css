@@ -205,7 +205,12 @@ html {
   grid-template-columns: 1fr auto;
   gap: 1.5rem;
   width: 100%;
-  min-height: 0; /* Ensure it can shrink if needed */
+  min-height: 0;
+}
+
+/* Target items in column 2 (auto-sized column) */
+.projects-grid > *:nth-child(2n) {
+  justify-self: center;
 }
 
 .project-row {
