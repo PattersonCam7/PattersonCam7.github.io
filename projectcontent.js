@@ -3,7 +3,6 @@ const carouselIndexes = {};
 
 // Function to scroll images in a specific carousel
 function scrollImages(projectName, direction) {
-  console.log(`scrollImages called: project=${projectName}, direction=${direction}`);
   const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
   if (!carousel) {
     console.error(`Carousel not found for project: ${projectName}`);
@@ -11,24 +10,28 @@ function scrollImages(projectName, direction) {
   }
 
   const images = carousel.querySelectorAll('.carousel-image');
-  if (!images.length) {
-    console.error(`No images found in carousel for project: ${projectName}`);
+  const prevBtn = carousel.querySelector('.carousel-button.prev');
+  const nextBtn = carousel.querySelector('.carousel-button.next');
+
+  if (images.length <= 1) {
+    console.log(`Carousel for "${projectName}" has ${images.length} image(s); no scrolling needed.`);
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = true;
     return;
+  } else {
+    if (prevBtn) prevBtn.disabled = false;
+    if (nextBtn) nextBtn.disabled = false;
   }
 
-  // Initialize index for this project if not set
   if (carouselIndexes[projectName] === undefined) {
     carouselIndexes[projectName] = 0;
   }
 
-  // Remove 'active' class from current image
   images[carouselIndexes[projectName]].classList.remove('active');
 
-  // Calculate new index (wraps around)
   carouselIndexes[projectName] =
     (carouselIndexes[projectName] + direction + images.length) % images.length;
 
-  // Add 'active' class to new image
   images[carouselIndexes[projectName]].classList.add('active');
 }
 
@@ -58,11 +61,10 @@ function openProjectFromHash() {
     header.classList.add('active');
     if (icon) icon.textContent = '▲';
 
-    // Delay scrolling until after content expands
     setTimeout(() => {
       const headingRect = targetHeading.getBoundingClientRect();
       const absoluteElementTop = window.pageYOffset + headingRect.top;
-      const offset = window.innerHeight / 2; // Center roughly halfway down
+      const offset = window.innerHeight / 2;
 
       window.scrollTo({
         top: absoluteElementTop - offset,
@@ -70,7 +72,6 @@ function openProjectFromHash() {
       });
     }, 150);
   } else {
-    // Already open, scroll immediately with offset
     const headingRect = targetHeading.getBoundingClientRect();
     const absoluteElementTop = window.pageYOffset + headingRect.top;
     const offset = window.innerHeight / 2;
@@ -81,15 +82,26 @@ function openProjectFromHash() {
     });
   }
 
-  // Reset carousel(s) inside this project to show first image active
+  // Reset carousel(s) inside this project to first image active & update buttons
   const carousels = projectDiv.querySelectorAll('.carousel');
   carousels.forEach(carousel => {
     const projectName = carousel.getAttribute('data-project');
     const images = carousel.querySelectorAll('.carousel-image');
+    const prevBtn = carousel.querySelector('.carousel-button.prev');
+    const nextBtn = carousel.querySelector('.carousel-button.next');
+
     if (images.length) {
       images.forEach(img => img.classList.remove('active'));
       images[0].classList.add('active');
       carouselIndexes[projectName] = 0;
+
+      if (images.length <= 1) {
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtn) nextBtn.disabled = true;
+      } else {
+        if (prevBtn) prevBtn.disabled = false;
+        if (nextBtn) nextBtn.disabled = false;
+      }
     }
   });
 }
@@ -105,11 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Toggle visibility
       content.classList.toggle('active');
       header.classList.toggle('active');
 
-      // Toggle icon direction
       const icon = header.querySelector('.toggle-icon');
       if (icon) {
         icon.textContent = content.classList.contains('active') ? '▲' : '▼';
@@ -119,10 +129,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Disable buttons on carousels with 0 or 1 image
+  document.querySelectorAll('.carousel').forEach(carousel => {
+    const projectName = carousel.getAttribute('data-project');
+    const images = carousel.querySelectorAll('.carousel-image');
+    const prevBtn = carousel.querySelector('.carousel-button.prev');
+    const nextBtn = carousel.querySelector('.carousel-button.next');
+
+    if (images.length <= 1) {
+      if (prevBtn) prevBtn.disabled = true;
+      if (nextBtn) nextBtn.disabled = true;
+    }
+  });
+
   // Open project on initial page load if hash present
   openProjectFromHash();
 
-  // Add event listeners for carousel buttons (optional enhancement)
+  // Add event listeners for carousel buttons
   document.querySelectorAll('.carousel-button').forEach(button => {
     button.addEventListener('click', (e) => {
       const carousel = button.closest('.carousel');
