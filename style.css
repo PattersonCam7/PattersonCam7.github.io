@@ -190,17 +190,14 @@ html {
 /* =======================
    PROJECT SECTIONS
 ======================= */
-
 #projects {
   background-color: var(--card-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-light);
   border-top: 2px solid var(--border-color);
-  margin-bottom: 2.5rem;
-  padding: 1.25rem 1.5rem;
-  transition: all var(--transition-speed) ease;
-  min-height: 200px; /* Ensure a minimum height for each project */
-  position: relative; /* Ensure content positioning context */
+  padding: 1.5rem; /* Padding for the section, not individual projects */
+  margin-bottom: 2rem; /* Space below the section */
+  position: relative; /* Context for absolute positioning if needed */
 }
 
 .projects-grid {
@@ -208,14 +205,21 @@ html {
   grid-template-columns: 1fr auto;
   gap: 1.5rem;
   width: 100%;
-  min-height:0; /* Ensure it can shrink if needed */
+  min-height: 0; /* Ensure it can shrink if needed */
 }
 
 .project-row {
-  display: contents;
+  display: contents; /* Allows children to be placed directly in the grid */
+  background-color: var(--card-bg); /* Moved from .project */
+  border-radius: 10px;
+  box-shadow: var(--shadow-light); /* Moved from .project */
+  padding: 1.25rem 1.5rem; /* Moved from .project */
+  transition: all var(--transition-speed) ease;
+  position: relative;
+  min-height: 200px; /* Moved from .project */
 }
 
-.project:hover {
+.project-row:hover {
   box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
 }
