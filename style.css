@@ -191,7 +191,7 @@ html {
    PROJECT SECTIONS
 ======================= */
 
-.projects {
+#projects {
   background-color: var(--card-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-light);
