@@ -4,10 +4,16 @@ const carouselIndexes = {};
 // Function to scroll images in a specific carousel
 function scrollImages(projectName, direction) {
   const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
-  if (!carousel) return;
+  if (!carousel) {
+    console.error(`Carousel not found for project: ${projectName}`);
+    return;
+  }
 
   const images = carousel.querySelectorAll('.carousel-image');
-  if (!images.length) return;
+  if (!images.length) {
+    console.error(`No images found in carousel for project: ${projectName}`);
+    return;
+  }
 
   // Initialize index for this project if not set
   if (carouselIndexes[projectName] === undefined) {
@@ -31,14 +37,20 @@ function openProjectFromHash() {
   if (!hash) return;
 
   const targetHeading = document.querySelector(hash);
-  if (!targetHeading) return;
+  if (!targetHeading) {
+    console.warn(`No element found for hash: ${hash}`);
+    return;
+  }
 
-  const projectDiv = targetHeading.closest('.project');
-  if (!projectDiv) return;
+  const projectDiv = targetHeading.closest('.project-row');
+  if (!projectDiv) {
+    console.warn(`No .project-row found for hash: ${hash}`);
+    return;
+  }
 
   const header = projectDiv.querySelector('.project-header');
   const content = projectDiv.querySelector('.project-content');
-  const icon = header.querySelector('.toggle-icon');
+  const icon = header ? header.querySelector('.toggle-icon') : null;
 
   if (content && !content.classList.contains('active')) {
     content.classList.add('active');
@@ -49,7 +61,7 @@ function openProjectFromHash() {
     setTimeout(() => {
       const headingRect = targetHeading.getBoundingClientRect();
       const absoluteElementTop = window.pageYOffset + headingRect.top;
-      const offset = window.innerHeight / 2;  // Center roughly halfway down
+      const offset = window.innerHeight / 2; // Center roughly halfway down
 
       window.scrollTo({
         top: absoluteElementTop - offset,
@@ -87,7 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.collapsible').forEach(header => {
     header.addEventListener('click', () => {
       const content = header.nextElementSibling;
-      if (!content) return;
+      if (!content) {
+        console.error('No content found for collapsible header');
+        return;
+      }
 
       // Toggle visibility
       content.classList.toggle('active');
@@ -96,13 +111,25 @@ document.addEventListener('DOMContentLoaded', () => {
       // Toggle icon direction
       const icon = header.querySelector('.toggle-icon');
       if (icon) {
-        icon.textContent = icon.textContent === '▼' ? '▲' : '▼';
+        icon.textContent = content.classList.contains('active') ? '▲' : '▼';
+      } else {
+        console.warn('Toggle icon not found');
       }
     });
   });
 
   // Open project on initial page load if hash present
   openProjectFromHash();
+
+  // Add event listeners for carousel buttons (optional enhancement)
+  document.querySelectorAll('.carousel-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      const carousel = button.closest('.carousel');
+      const projectName = carousel.getAttribute('data-project');
+      const direction = button.classList.contains('next') ? 1 : -1;
+      scrollImages(projectName, direction);
+    });
+  });
 });
 
 // Listen for hash changes when clicking sidebar links or manual changes
