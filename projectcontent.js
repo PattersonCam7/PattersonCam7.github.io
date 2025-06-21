@@ -138,43 +138,46 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('hashchange', openProjectFromHash);
 
 // === Lightbox Setup ===
+// Lightbox elements
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const closeBtn = document.getElementById('lightbox-close');
-
-function closeLightbox() {
-  lightbox.classList.add('hidden');
-  lightboxImg.src = '';
-  document.body.classList.remove('no-scroll');
-}
 
 // Open lightbox on image click
 document.querySelectorAll('.carousel-image').forEach(img => {
   img.addEventListener('click', () => {
     lightboxImg.src = img.src;
     lightbox.classList.remove('hidden');
-    document.body.classList.add('no-scroll');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
   });
 });
 
-// Close lightbox on clicking the close button
+// Close lightbox function
+function closeLightbox() {
+  lightbox.classList.add('hidden');
+  lightboxImg.src = '';
+  document.body.style.overflow = ''; // restore scroll
+}
+
+// Close lightbox on close button click
 if (closeBtn) {
   closeBtn.addEventListener('click', closeLightbox);
 }
 
-// Close lightbox on clicking outside the image (only on background)
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
+// Close lightbox on clicking outside image
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox || e.target === lightboxImg) {
     closeLightbox();
   }
 });
 
-// Close lightbox on pressing Escape key
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
+// Close lightbox on ESC key press
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
     closeLightbox();
   }
 });
+
 // === End of Lightbox Setup ===
 
 

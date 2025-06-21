@@ -554,7 +554,7 @@ footer {
 }
 
 /* =======================
-   LIGHTBOX STYLES
+   LIGHTBOX
 ======================= */
 #lightbox {
   position: fixed;
@@ -575,6 +575,7 @@ footer {
 }
 
 .lightbox-content {
+  position: relative;
   max-width: 90%;
   max-height: 90%;
 }
@@ -582,40 +583,41 @@ footer {
 #lightbox-img {
   max-width: 100%;
   max-height: 100%;
-  border-radius: 12px;
   border: 2px solid #fff;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.3s ease;
-  cursor: pointer;
+  cursor: zoom-out;
+  border-radius: 12px;
 }
-
-#lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  color: white;
-  cursor: pointer;
-  z-index: 10000;
-  user-select: none;
-  transition: opacity 0.3s ease;
-}
-
-#lightbox-close:hover {
-  opacity: 0.7;
-}
-
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
+
+/* Close button styles */
+#lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 10000; /* above lightbox image */
+  transition: background 0.3s ease;
+  user-select: none;
+}
+
+#lightbox-close:hover,
+#lightbox-close:focus {
+  background: rgba(255, 255, 255, 1);
+  outline: none;
+}
+
 
 
 

@@ -68,7 +68,7 @@
           </div>
 
           <p><a href="code.html">See code breakdown</a></p>
-
+          <!--Project Text-->
           <p class="project-textdescription">
             A horror survival game currently in a prototype phase. Set in the vast landscapes of Alaska, you must fish to survive the day and build to survive the night.
             Currently prototyping and defining project requirements before determining the game engine.
@@ -102,7 +102,7 @@
               allowfullscreen>
             </iframe>
           </div>
-
+          <!--Project Text-->
           <p class="project-textdescription">
             A short time-based game set in an office. Created with another team member for a week-long game jam, though we only had around three days. Made with Unity &amp; C#.
           </p>
@@ -123,8 +123,16 @@
         </div>
 
         <div class="project-content">
-          <img src="images/sundown_thumbnail.png" alt="Sundown" />
+          <div class="carousel" data-project="sundown">
+            <div class="carousel-inner">
+              <img src="images/sundown_thumbnail.png" class="carousel-image active" alt="Sundown Thumbnail" />
+            </div>
+            <button class="carousel-button prev">&#10094;</button>
+            <button class="carousel-button next">&#10095;</button>
+          </div>
+          <!--Project Text-->
           <p class="project-textdescription">A first-person, narrative-driven psychological horror made for a year-long university project. Developed with Unreal Engine 5 and Blueprints.</p>
+
         </div>
       </div>
 
@@ -151,7 +159,10 @@
             <button class="carousel-button next">&#10095;</button>
           </div>
 
-          <p class="project-textdescription">A VR game where you flip through customer requests and create potions to help a village. Made with Unity and C#. Currently a prototype showcasing the loop; future plans include improved UX and more polish.</p>
+          <!--Project Text-->
+          <p class="project-textdescription">A VR game where you flip through customer requests and create potions to help a village. 
+            Made with Unity and C#. Currently a prototype showcasing the loop; future plans include improved UX and more polish.</p>
+
         </div>
       </div>
 
@@ -178,8 +189,10 @@
               allowfullscreen>
             </iframe>
           </div>
-
-          <p class="project-textdescription">A third-person, 3D dungeon crawler prototype focused on combat, AI, traps, and puzzles. Created for an Advanced Game Development module using Unreal Engine 5 and Blueprints.</p>
+          <!--Project Text-->
+          <p class="project-textdescription">A third-person, 3D dungeon crawler prototype focused on combat, AI, traps, and puzzles. 
+            Created for an Advanced Game Development module using Unreal Engine 5 and Blueprints.</p>
+          
         </div>
       </div>
 
@@ -197,7 +210,9 @@
 
         <div class="project-content">
           <img src="images/lastturn_thumbnail.png" alt="Last Turn" />
-          <p class="project-textdescription">My first game, developed during college. A horror experience made in Unreal Engine 4 and released on Game Jolt. Player feedback helped shape my growth as a developer.</p>
+          <!--Project Text-->
+          <p class="project-textdescription">My first game, developed during college. A horror experience made in Unreal Engine 4 and released on Game Jolt. 
+            Player feedback helped shape my growth as a developer.</p>
         </div>
       </div>
     </section>
@@ -214,12 +229,13 @@
 <script src="projectcontent.js"></script>
 
 <!-- Lightbox Container -->
-<div id="lightbox" class="hidden">
-  <span id="lightbox-close">&times;</span>
+<div id="lightbox" class="hidden" role="dialog" aria-modal="true" aria-label="Expanded project image">
+  <button id="lightbox-close" aria-label="Close lightbox">&times;</button>
   <div class="lightbox-content">
-    <img id="lightbox-img" src="" alt="Enlarged screenshot">
+    <img id="lightbox-img" src="" alt="Expanded project image" />
   </div>
 </div>
+
 
 
 
