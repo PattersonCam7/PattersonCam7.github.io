@@ -3,6 +3,7 @@ const carouselIndexes = {};
 
 // Function to scroll images in a specific carousel
 function scrollImages(projectName, direction) {
+  console.log(`scrollImages called: project=${projectName}, direction=${direction}`);
   const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
   if (!carousel) {
     console.error(`Carousel not found for project: ${projectName}`);
