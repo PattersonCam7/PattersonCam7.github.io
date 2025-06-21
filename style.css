@@ -146,7 +146,7 @@ html {
 /* =======================
    PROJECT SECTIONS
 ======================= */
-#projects {
+.projects-grid {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 1rem;
@@ -171,11 +171,7 @@ html {
   background: none;
   border: none;
   cursor: pointer;
-  width: 100%;
   padding: 0.75rem 0;
-  display: grid;
-  justify-content: space-between;
-  align-items: center;
   font-weight: 700;
   font-size: 1.25rem;
   color: var(--text-color);
@@ -474,6 +470,20 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .projects-grid {
+    display: block; /* Stack items vertically */
+  }
+
+  .project-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-header.right {
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+  }
+
   .page-wrapper {
     flex-direction: column;
   }
