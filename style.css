@@ -141,9 +141,6 @@ h3 {
 
 /* Sidebar styles */
 .sidebar-nav {
-  position: fixed;
-  top: 2rem;
-  left: 0;
   width: 220px;
   height: calc(100vh - 2rem);
   overflow-y: auto;
