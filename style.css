@@ -50,8 +50,9 @@ h1, h2, h3 {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   box-shadow: var(--shadow-light);
-  height: auto; /* Ensure it grows with content */
-  width: 1310px;
+  width: 100%;
+  max-width: 1310px;
+  box-sizing: border-box;
 }
 
 .page-wrapper {
@@ -113,15 +114,17 @@ h3 {
    NAVIGATION
 ======================= */
 .top-nav {
-    text-align: center;
-    margin-bottom: 0.5rem;
-    padding: 1rem 0;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 8px;
-    box-shadow: var(--shadow-light);
-    width: 1202px;
-    display: flex;
-    justify-content:space-evenly;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  width: 100%;
+  max-width: 1202px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .top-nav a {
@@ -454,16 +457,18 @@ html {
    CONTACT FORM
 ======================= */
 #contact {
-    margin-top: 0.5rem;
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: var(--shadow-light);
-    min-width: 1000px;
+  margin-top: 0.5rem;
+  padding: 2rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-light);
+  width: 100%;
+  max-width: 1000px;
+  box-sizing: border-box;
 }
 
 .contact-section-wrapper {
-  min-height: 70vh; /* or adjust as you like */
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -630,14 +635,29 @@ footer {
 /* =======================
    MEDIA QUERIES
 ======================= */
+
+/* Medium screens (tablets and small laptops) */
 @media (max-width: 900px) {
   .container {
     padding: 20px;
-    max-width: 800px;
+    max-width: 100%;
+  }
+
+  .top-nav {
+    padding: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 100%;
+  }
+
+  .top-nav a {
+    margin: 0.5rem 1rem;
   }
 
   h1 {
     font-size: 2.2rem;
+    text-align: center;
   }
 
   h2 {
@@ -654,25 +674,48 @@ footer {
   }
 
   .sidebar-nav {
-    width: 180px;
+    width: 100%;
+    margin-bottom: 2rem;
   }
 
-  .top-nav {
-    padding: 0.5rem 0;
+  .page-wrapper {
+    flex-direction: column;
+  }
+
+  .content-area {
+    margin-left: 0;
+    padding: 20px;
+    max-height: none;
+  }
+
+  #contact {
+    max-width: 100%;
+    padding: 1.5rem;
   }
 }
 
+/* Small screens (phones) */
 @media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .top-nav a {
+    margin: 0.25rem 0;
+    display: block;
+    text-align: center;
+  }
+
   .projects-grid {
     display: block;
   }
-
-  /*
-  .project-row {
-    display: flex;
-    flex-direction: column;
-  }
-    */
 
   .project-header.right {
     justify-content: flex-end;
@@ -681,31 +724,15 @@ footer {
   }
 
   .project-content.active {
-    grid-column: auto; /* Reset grid column on mobile */
+    grid-column: auto;
     width: 100%;
     padding: 1rem;
-  }
-
-  .page-wrapper {
-    flex-direction: column;
   }
 
   .sidebar-nav {
-    position: static;
     width: 100%;
-    height: auto;
     padding: 1rem;
-  }
-
-.content-area {
-    margin-left: 0;
-    padding: 15px;
-    overflow-y: auto; /* Enable scrolling on mobile */
-    max-height: calc(100vh - 30px); /* Adjust for mobile header/footer */
-  }
-
-  .container {
-    padding: 15px;
+    position: static;
   }
 
   .video-wrapper {
@@ -720,7 +747,20 @@ footer {
     font-size: 1.4rem;
   }
 
-  .top-nav a {
-    margin: 0 1rem;
+  .project-textdescription {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+
+  #contact {
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .content-area {
+    padding: 15px;
+    overflow-y: auto;
+    max-height: calc(100vh - 30px);
   }
 }
