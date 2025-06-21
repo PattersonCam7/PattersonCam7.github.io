@@ -7,6 +7,7 @@ const carouselIndexes = {};
  * @param {number} direction - +1 for next image, -1 for previous image.
  */
 function scrollImages(projectName, direction) {
+  console.log(`scrollImages called for project=${projectName}, direction=${direction}`);
   const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
   if (!carousel) {
     console.error(`Carousel not found for project: ${projectName}`);
