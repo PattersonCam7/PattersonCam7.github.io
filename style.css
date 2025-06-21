@@ -374,7 +374,7 @@ html {
   position: relative;
   width: 100%;
   height: auto;
-  min-height: 300px; /* or the height of your tallest image */
+  min-height: 0px; 
 }
 
 .carousel-image {
