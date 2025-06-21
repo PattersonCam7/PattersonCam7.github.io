@@ -646,6 +646,10 @@ footer {
   .sidebar-nav {
     width: 180px;
   }
+
+  .top-nav {
+    padding: 0.5rem 0;
+  }
 }
 
 @media (max-width: 600px) {
