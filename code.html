@@ -19,35 +19,34 @@
       <a href="contact.html#contact">Contact</a>
     </nav>
 
-  <div class="page-wrapper">
-    <nav class="sidebar-nav">
-    <ul>
-      <li><a href="#dynamic-world-system">Dynamic World System</a></li>
-      <li><a href="#burnout-timer">Burnout Timer System</a></li>
-      <li><a href="#burnout-coffeepickup">Burnout Coffee Pickup</a></li>
-      
-    </ul>
-  </nav>
+    <div class="page-wrapper">
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#dynamic-world-system">Dynamic World System</a></li>
+          <li><a href="#burnout-timer">Burnout Timer System</a></li>
+          <li><a href="#burnout-coffeepickup">Burnout Coffee Pickup</a></li>
+        </ul>
+      </nav>
 
-  <main class="content-area">
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>Code Examples</h2>
-      <p class="project-textdescription">Click a section to expand and view the system breakdowns.</p>
+      <main class="content-area">
+        <!-- Projects Section -->
+        <section id="projects">
+          <h2>Code Examples</h2>
+          <p class="project-textdescription">Click a section to expand and view the system breakdowns.</p>
 
-      <div class="project">
-        <!-- Dynamic World System -->
-        <div class="project-header collapsible">
-          <h3 id="dynamic-world-system">Horror Fishing: Dynamic World System</h3>
-          <span class="project-date">June 2025</span>
-          <span class="toggle-icon">▼</span>
-        </div>
-        <div class="project-content">
-          <p>
-            This system controls the time of day, weather, sun, and moon transitions
-            in a dynamic world environment.
-          </p>
-          <pre><code class="language-csharp">
+          <div class="project">
+            <!-- Dynamic World System -->
+            <div class="project-header collapsible">
+              <h3 id="dynamic-world-system">Horror Fishing: Dynamic World System</h3>
+              <span class="project-date">June 2025</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+            <div class="project-content">
+              <p>
+                This system controls the time of day, weather, sun, and moon transitions
+                in a dynamic world environment.
+              </p>
+              <pre><code class="language-csharp">
 // DynamicWorldSystem.cs (snippet)
 public class DynamicWorldSystem : MonoBehaviour {
     public static DynamicWorldSystem Instance { get; private set; }
@@ -59,20 +58,20 @@ public class DynamicWorldSystem : MonoBehaviour {
         weatherSystem.UpdateWeather(timeOfDaySystem.CurrentTimeOfDay);
     }
 }
-          </code></pre>
-        </div>
-      </div>
+              </code></pre>
+            </div>
+          </div>
 
-      <div class="project">
-        <!-- Burnout Coffee Counter -->
-        <div class="project-header collapsible">
-          <h3 id="burnout-timer">Burnout: Game Timer System</h3>
-          <span class="project-date">May 2025</span>
-          <span class="toggle-icon">▼</span>
-        </div>
-        <div class="project-content">
-          <p>This script is used to track the current timer and calculate reductions in time when a coffee is picked up.</p>
-          <pre><code class="language-csharp">
+          <div class="project">
+            <!-- Burnout Coffee Counter -->
+            <div class="project-header collapsible">
+              <h3 id="burnout-timer">Burnout: Game Timer System</h3>
+              <span class="project-date">May 2025</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+            <div class="project-content">
+              <p>This script is used to track the current timer and calculate reductions in time when a coffee is picked up.</p>
+              <pre><code class="language-csharp">
 // CountdownTimer.cs (snippet)
 public class CountdownTimer : MonoBehaviour 
 {
@@ -142,19 +141,20 @@ public class CountdownTimer : MonoBehaviour
         //Debug.Log($"Coffee: {coffeeCount}, New Time: {adjustedStartTime:F1}s"); // Log the coffee count and new time for debugging
     }
 }
-          </code></pre>
-        </div>
-      </div>
-            <div class="project">
-        <!-- Burnout Coffee Counter -->
-        <div class="project-header collapsible">
-          <h3 id="burnout-coffeepickup">Burnout: Coffee Pickup</h3>
-          <span class="project-date">May 2025</span>
-          <span class="toggle-icon">▼</span>
-        </div>
-        <div class="project-content">
-          <p>This script is used to detect when a coffee is picked up</p>
-          <pre><code class="language-csharp">
+              </code></pre>
+            </div>
+          </div>
+
+          <div class="project">
+            <!-- Burnout Coffee Counter -->
+            <div class="project-header collapsible">
+              <h3 id="burnout-coffeepickup">Burnout: Coffee Pickup</h3>
+              <span class="project-date">May 2025</span>
+              <span class="toggle-icon">▼</span>
+            </div>
+            <div class="project-content">
+              <p>This script is used to detect when a coffee is picked up</p>
+              <pre><code class="language-csharp">
 // CoffeePickup.cs (snippet)
 public class CoffeePickup : MonoBehaviour
 {
@@ -233,20 +233,21 @@ public class CoffeePickup : MonoBehaviour
         }
     }
 }
-          </code></pre>
-        </div>
-      </div>
+              </code></pre>
+            </div>
+          </div>
 
-      <!-- Add more systems here -->
+          <!-- Add more systems here -->
 
-    </section>
+        </section>
 
-    <p><a href="index.html">← Back to Portfolio</a></p>
-  </main>
+        <p><a href="index.html">← Back to Portfolio</a></p>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
+    <script src="projectcontent.js"></script>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-csharp.min.js"></script>
-  <script src="projectcontent.js"></script>
 </body>
 </html>
