@@ -230,6 +230,8 @@ html {
   user-select: none;
   transition: color var(--transition-speed) ease;
   display: contents;
+  box-shadow: var(--shadow-light);
+  border-top: 2px solid var(--border-color);
 }
 
 .project-header:hover,
@@ -248,11 +250,6 @@ html {
   text-decoration: underline;
   color: var(--primary-color);
   outline: 2px solid var(--primary-color);
-}
-
-.project-header.collapsible{
-  box-shadow: var(--shadow-light);
-  border-top: 2px solid var(--border-color);
 }
 
 /* Style for the right-aligned date and toggle section */
