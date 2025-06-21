@@ -214,6 +214,7 @@ html {
   border: 1px solid #ccc; /* for visual debugging */
   padding: 1rem;
   box-sizing: border-box;
+  border-radius: 10px;
 }
 
 .project-row:hover {
