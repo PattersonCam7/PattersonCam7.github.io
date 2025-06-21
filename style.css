@@ -121,7 +121,7 @@ h3 {
     box-shadow: var(--shadow-light);
     width: 1202px;
     display: flex;
-    justify-content:center;
+    justify-content:space-evenly;
 }
 
 .top-nav a {
