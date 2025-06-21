@@ -301,6 +301,16 @@ html {
   margin-top: -3.5rem;
 }
 
+.project-linktext a:hover,
+.project-linktext a:focus
+{
+  color: var(--primary-color);
+  outline: 2px solid var(--primary-color);
+  background: rgba(0, 122, 204, 0.1);
+  border-radius: 4px;
+}
+
+
 .project-header.active .toggle-icon {
   transform: rotate(180deg);
 }
