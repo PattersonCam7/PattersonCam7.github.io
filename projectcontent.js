@@ -1,7 +1,11 @@
 // Track the current index for each carousel project
 const carouselIndexes = {};
 
-// Function to scroll images in a specific carousel
+/**
+ * Scrolls images in the specified carousel by updating active image index.
+ * @param {string} projectName - The data-project attribute of the carousel.
+ * @param {number} direction - +1 for next image, -1 for previous image.
+ */
 function scrollImages(projectName, direction) {
   const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
   if (!carousel) {
@@ -13,6 +17,10 @@ function scrollImages(projectName, direction) {
   const prevBtn = carousel.querySelector('.carousel-button.prev');
   const nextBtn = carousel.querySelector('.carousel-button.next');
 
+  console.log('Current index before:', carouselIndexes[projectName]);
+  console.log('Images length:', images.length);
+
+  // Disable buttons if carousel has 1 or 0 images, else enable
   if (images.length <= 1) {
     console.log(`Carousel for "${projectName}" has ${images.length} image(s); no scrolling needed.`);
     if (prevBtn) prevBtn.disabled = true;
@@ -23,19 +31,30 @@ function scrollImages(projectName, direction) {
     if (nextBtn) nextBtn.disabled = false;
   }
 
+  // Ensure index is initialized and a number
   if (carouselIndexes[projectName] === undefined) {
     carouselIndexes[projectName] = 0;
+  } else {
+    carouselIndexes[projectName] = Number(carouselIndexes[projectName]) || 0;
   }
 
+  // Remove 'active' class from current image
   images[carouselIndexes[projectName]].classList.remove('active');
 
+  // Calculate new index with wrap-around
+  console.log('Before update:', carouselIndexes[projectName], direction, images.length);
   carouselIndexes[projectName] =
     (carouselIndexes[projectName] + direction + images.length) % images.length;
+  console.log('After update:', carouselIndexes[projectName]);
 
+  // Add 'active' class to new image
   images[carouselIndexes[projectName]].classList.add('active');
 }
 
-// Function to open project from hash and scroll with offset
+/**
+ * Opens a project section from the URL hash, expands it, scrolls to it,
+ * and resets any carousels inside to the first image.
+ */
 function openProjectFromHash() {
   const hash = window.location.hash;
   if (!hash) return;
@@ -61,6 +80,7 @@ function openProjectFromHash() {
     header.classList.add('active');
     if (icon) icon.textContent = '▲';
 
+    // Scroll after expanding to center heading
     setTimeout(() => {
       const headingRect = targetHeading.getBoundingClientRect();
       const absoluteElementTop = window.pageYOffset + headingRect.top;
@@ -72,6 +92,7 @@ function openProjectFromHash() {
       });
     }, 150);
   } else {
+    // If already expanded, scroll immediately
     const headingRect = targetHeading.getBoundingClientRect();
     const absoluteElementTop = window.pageYOffset + headingRect.top;
     const offset = window.innerHeight / 2;
@@ -82,7 +103,7 @@ function openProjectFromHash() {
     });
   }
 
-  // Reset carousel(s) inside this project to first image active & update buttons
+  // Reset carousels inside project to first image and update buttons
   const carousels = projectDiv.querySelectorAll('.carousel');
   carousels.forEach(carousel => {
     const projectName = carousel.getAttribute('data-project');
@@ -106,9 +127,8 @@ function openProjectFromHash() {
   });
 }
 
-// Wait until DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Handle collapsible project sections
+  // Setup collapsible project sections toggle
   document.querySelectorAll('.collapsible').forEach(header => {
     header.addEventListener('click', () => {
       const content = header.nextElementSibling;
@@ -116,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('No content found for collapsible header');
         return;
       }
-
       content.classList.toggle('active');
       header.classList.toggle('active');
 
@@ -145,9 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Open project on initial page load if hash present
   openProjectFromHash();
 
-  // Add event listeners for carousel buttons
+  // Add click listeners for carousel buttons
   document.querySelectorAll('.carousel-button').forEach(button => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', () => {
       const carousel = button.closest('.carousel');
       const projectName = carousel.getAttribute('data-project');
       const direction = button.classList.contains('next') ? 1 : -1;
@@ -156,7 +175,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Listen for hash changes when clicking sidebar links or manual changes
-window.addEventListener('hashchange', () => {
-  openProjectFromHash();
-});
+window.addEventListener('hashchange', openProjectFromHash);
