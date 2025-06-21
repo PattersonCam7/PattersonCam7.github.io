@@ -200,6 +200,10 @@ html {
 
 .project-row {
   display: contents;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition-speed) ease;
 }
 
 .project {
