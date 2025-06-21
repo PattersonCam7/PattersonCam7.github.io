@@ -32,18 +32,23 @@
           </ul>
         </nav>
 
-        <!-- Projects Section -->
-        <section id="projects">
-          <h2>Code Examples</h2>
-          <p class="project-textdescription">Click a section to expand and view the system breakdowns.</p>
+        <h2>Code Examples</h2>
+        <p class="project-textdescription">Click a section to expand and view the system breakdowns.</p>
 
-          <div class="project">
-            <!-- Dynamic World System -->
+        <!-- Projects Section -->
+        <section id="projects" class="projects-grid">
+          <!-- Dynamic World System -->
+          <div class="project-row">
             <div class="project-header collapsible">
-              <h3 id="dynamic-world-system">Horror Fishing: Dynamic World System</h3>
-              <span class="project-date">June 2025</span>
-              <span class="toggle-icon">▼</span>
+              <div class="project-name">
+                <h3 id="dynamic-world-system">Horror Fishing: Dynamic World System</h3>
+              </div>
+              <div class="project-header right">
+                <span class="project-date">June 2025</span>
+                <span class="toggle-icon">▼</span>
+              </div>
             </div>
+
             <div class="project-content">
               <p>
                 This system controls the time of day, weather, sun, and moon transitions
@@ -65,13 +70,18 @@ public class DynamicWorldSystem : MonoBehaviour {
             </div>
           </div>
 
-          <div class="project">
+          <div class="project-row">
             <!-- Burnout Timer System -->
             <div class="project-header collapsible">
-              <h3 id="burnout-timer">Burnout: Game Timer System</h3>
-              <span class="project-date">May 2025</span>
-              <span class="toggle-icon">▼</span>
+              <div class="project-name">
+                <h3 id="burnout-timer">Burnout: Game Timer System</h3>
+              </div>
+              <div class="project-header right">
+                <span class="project-date">May 2025</span>
+                <span class="toggle-icon">▼</span>
+              </div>
             </div>
+
             <div class="project-content">
               <p>This script is used to track the current timer and calculate reductions in time when a coffee is picked up.</p>
               <pre><code class="language-csharp">
@@ -148,13 +158,18 @@ public class CountdownTimer : MonoBehaviour
             </div>
           </div>
 
-          <div class="project">
+          <div class="project-row">
             <!-- Burnout Coffee Counter -->
             <div class="project-header collapsible">
-              <h3 id="burnout-coffeepickup">Burnout: Coffee Pickup</h3>
-              <span class="project-date">May 2025</span>
-              <span class="toggle-icon">▼</span>
+              <div class="project-name">
+                <h3 id="burnout-coffee-counter">Burnout: Coffee Pickup</h3>
+              </div>
+              <div class="project-header right">
+                <span class="project-date">May 2025</span>
+                <span class="toggle-icon">▼</span>
+              </div>
             </div>
+            
             <div class="project-content">
               <p>This script is used to detect when a coffee is picked up</p>
               <pre><code class="language-csharp">
