@@ -100,12 +100,14 @@ function openProjectFromHash() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Collapsible project sections toggle
   document.querySelectorAll('.collapsible').forEach(header => {
     header.addEventListener('click', () => {
       const content = header.nextElementSibling;
       if (!content) return;
       content.classList.toggle('active');
       header.classList.toggle('active');
+
       const icon = header.querySelector('.toggle-icon');
       if (icon) {
         icon.textContent = content.classList.contains('active') ? '▲' : '▼';
@@ -113,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Disable buttons on carousels with <=1 image
   document.querySelectorAll('.carousel').forEach(carousel => {
     const images = carousel.querySelectorAll('.carousel-image');
     const prevBtn = carousel.querySelector('.carousel-button.prev');
@@ -123,8 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Open project on initial load if hash present
   openProjectFromHash();
 
+  // Add click listeners for carousel buttons
   document.querySelectorAll('.carousel-button').forEach(button => {
     button.addEventListener('click', () => {
       const carousel = button.closest('.carousel');
@@ -133,54 +138,49 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollImages(projectName, direction);
     });
   });
+
+  // === Lightbox Setup ===
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  // Open lightbox on carousel image click
+  document.querySelectorAll('.carousel-image').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // prevent background scroll
+    });
+  });
+
+  // Close lightbox helper function
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lightboxImg.src = '';
+    document.body.style.overflow = ''; // restore scroll
+  }
+
+  // Close lightbox on close button click
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeLightbox);
+  } else {
+    console.warn('Close button #lightbox-close not found in DOM.');
+  }
+
+  // Close lightbox on clicking outside image
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox || e.target === lightboxImg) {
+      closeLightbox();
+    }
+  });
+
+  // Close lightbox on ESC key press
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+      closeLightbox();
+    }
+  });
+  // === End of Lightbox Setup ===
 });
 
 window.addEventListener('hashchange', openProjectFromHash);
-
-// === Lightbox Setup ===
-// Lightbox elements
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.getElementById('lightbox-close');
-
-// Open lightbox on image click
-document.querySelectorAll('.carousel-image').forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightbox.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // prevent background scroll
-  });
-});
-
-// Close lightbox function
-function closeLightbox() {
-  lightbox.classList.add('hidden');
-  lightboxImg.src = '';
-  document.body.style.overflow = ''; // restore scroll
-}
-
-// Close lightbox on close button click
-if (closeBtn) {
-  closeBtn.addEventListener('click', closeLightbox);
-} else {
-  console.warn('Close button #lightbox-close not found in DOM.');
-}
-
-
-// Close lightbox on clicking outside image
-lightbox.addEventListener('click', e => {
-  if (e.target === lightbox || e.target === lightboxImg) {
-    closeLightbox();
-  }
-});
-
-// Close lightbox on ESC key press
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
-    closeLightbox();
-  }
-});
-
-// === End of Lightbox Setup ===
-
-
