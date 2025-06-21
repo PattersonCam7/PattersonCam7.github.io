@@ -8,10 +8,7 @@ const carouselIndexes = {};
  */
 function scrollImages(projectName, direction) {
   const carousel = document.querySelector(`.carousel[data-project="${projectName}"]`);
-  if (!carousel) {
-    console.error(`Carousel not found for project: ${projectName}`);
-    return;
-  }
+  if (!carousel) return;
 
   const images = carousel.querySelectorAll('.carousel-image');
   const prevBtn = carousel.querySelector('.carousel-button.prev');
@@ -21,15 +18,13 @@ function scrollImages(projectName, direction) {
     if (prevBtn) prevBtn.disabled = true;
     if (nextBtn) nextBtn.disabled = true;
     return;
-  } else {
-    if (prevBtn) prevBtn.disabled = false;
-    if (nextBtn) nextBtn.disabled = false;
   }
+
+  if (prevBtn) prevBtn.disabled = false;
+  if (nextBtn) nextBtn.disabled = false;
 
   if (carouselIndexes[projectName] === undefined) {
     carouselIndexes[projectName] = 0;
-  } else {
-    carouselIndexes[projectName] = Number(carouselIndexes[projectName]) || 0;
   }
 
   images[carouselIndexes[projectName]].classList.remove('active');
@@ -144,43 +139,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxImg = document.getElementById('lightbox-img');
   const closeBtn = document.getElementById('lightbox-close');
 
-  // Open lightbox on carousel image click
-  document.querySelectorAll('.carousel-image').forEach(img => {
-    img.addEventListener('click', () => {
-      lightboxImg.src = img.src;
-      lightbox.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // prevent background scroll
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll('.carousel-image').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
     });
-  });
 
-  // Close lightbox helper function
-  function closeLightbox() {
-    lightbox.classList.add('hidden');
-    lightboxImg.src = '';
-    document.body.style.overflow = ''; // restore scroll
-  }
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightboxImg.src = '';
+      document.body.style.overflow = '';
+    }
 
-  // Close lightbox on close button click
-  if (closeBtn) {
-    closeBtn.addEventListener('click', closeLightbox);
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeLightbox);
+    }
+
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox || e.target === lightboxImg) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+        closeLightbox();
+      }
+    });
   } else {
-    console.warn('Close button #lightbox-close not found in DOM.');
+    console.warn('#lightbox or #lightbox-img not found in DOM.');
   }
 
-  // Close lightbox on clicking outside image
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox || e.target === lightboxImg) {
-      closeLightbox();
-    }
-  });
-
-  // Close lightbox on ESC key press
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
-      closeLightbox();
-    }
-  });
-  // === End of Lightbox Setup ===
+  // Listen to hash changes to auto-open projects
+  window.addEventListener('hashchange', openProjectFromHash);
 });
-
-window.addEventListener('hashchange', openProjectFromHash);
