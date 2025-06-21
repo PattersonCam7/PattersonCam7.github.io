@@ -148,8 +148,13 @@ html {
 ======================= */
 .projects-grid {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
+  grid-template-columns: 1fr auto; /* 1fr for project name, auto for date section */
+  gap: 1rem; /* Space between rows */
+  width: 100%; /* Ensure it takes full width of container */
+}
+
+.project-row {
+  display: contents; /* Allows children to be placed directly in the grid */
 }
 
 .project {
@@ -159,7 +164,6 @@ html {
   margin-bottom: 2.5rem;
   padding: 1rem 1.25rem;
   transition: box-shadow var(--transition-speed) ease;
-  display: contents;
 }
 
 .project:hover {
@@ -177,17 +181,16 @@ html {
   color: var(--text-color);
   user-select: none;
   transition: color var(--transition-speed) ease;
-  display: contents;
+  display: contents; /* Allows children to be grid-placed */
 }
 
 .project-header:hover,
 .project-header:focus {
   color: var(--primary-color);
-  /*outline: 2px solid var(--primary-color);*/
+  /*outline: 2px solid var(--primary-color);*/ /* Commented out for accessibility consideration */
 }
 
 .project-header a {
-  flex-grow: 1;
   color: inherit;
   text-decoration: none;
 }
@@ -198,27 +201,40 @@ html {
   outline: 2px solid var(--primary-color);
 }
 
+.project-header.collapsible {
+background-color: #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+  padding: 1rem 1.25rem;
+  transition: box-shadow var(--transition-speed) ease;
+}
+
+.project-header.collapsible:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* Style for the right-aligned date and toggle section */
 .project-header.right {
-  grid-column: 2;
+  grid-column: 2; /* Place in the second column */
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end; /* Align content to the right within the cell */
   align-items: center;
+  min-width: 120px; /* Ensure consistent width for date alignment */
 }
 
 .project-name {
-  grid-column: 1;
+  grid-column: 1; /* Place in the first column */
   margin: 0;
 }
 
 .project-date {
   flex-shrink: 0;
-  text-align: right;
+  text-align: right; /* Align text within the span to the right */
   color: #666;
   margin-right: 0.5rem;
   white-space: nowrap;
   min-height: 0; /* Accessibility fix */
 }
-
 
 /* Toggle icon */
 .toggle-icon {
