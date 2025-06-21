@@ -288,6 +288,7 @@ html {
   white-space: nowrap;
   font-weight: 500;
   min-height: 0;
+  margin-top: -7.5rem;
 }
 
 /* Toggle icon */
@@ -297,6 +298,7 @@ html {
   color: var(--primary-color);
   user-select: none;
   transition: transform var(--transition-speed) ease;
+  margin-top: -7.5rem;
 }
 
 .project-header.active .toggle-icon {
