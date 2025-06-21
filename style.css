@@ -458,11 +458,13 @@ html {
   box-shadow: var(--shadow-light);
 }
 
-.contact-wrapper {
+.contact-section-wrapper {
+  min-height: 70vh; /* or adjust as you like */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh; /* or whatever height you want */
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 #contact label {
@@ -525,6 +527,7 @@ html {
   border-radius: 4px;
   text-align: center;
 }
+
 
 /* =======================
    FOOTER
