@@ -206,6 +206,7 @@ html {
   background-color: var(--card-bg);
   border-radius: 10px;
   box-shadow: var(--shadow-light);
+  border-top: 2px solid var(--border-color);
   margin-bottom: 2.5rem;
   padding: 1.25rem 1.5rem;
   transition: all var(--transition-speed) ease;
@@ -230,8 +231,6 @@ html {
   user-select: none;
   transition: color var(--transition-speed) ease;
   display: contents;
-  box-shadow: var(--shadow-light);
-  border-top: 2px solid var(--border-color);
 }
 
 .project-header:hover,
