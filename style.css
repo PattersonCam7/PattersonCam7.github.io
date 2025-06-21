@@ -248,7 +248,7 @@ html {
 .project-header a:focus {
   text-decoration: underline;
   color: var(--primary-color);
-  outline: 2px solid var(--primary-color);
+  /*outline: 2px solid var(--primary-color);*/
 }
 
 /* Style for the right-aligned date and toggle section */
