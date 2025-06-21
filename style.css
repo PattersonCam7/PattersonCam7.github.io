@@ -51,18 +51,22 @@ h1, h2, h3 {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 12px;
   box-shadow: var(--shadow-light);
+  height: auto; /* Ensure it grows with content */
 }
 
 .page-wrapper {
   display: flex;
   gap: 2.5rem;
-  min-height: 100vh;
+  min-height: 0; /* Remove fixed viewport height */
+  height: auto; /* Allow natural growth */
 }
 
 .content-area {
   margin-left: 220px;
   padding: 25px;
   flex-grow: 1;
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  max-height: calc(100vh - 50px); /* Adjust based on header/footer height */
 }
 
 /* =======================
@@ -191,6 +195,7 @@ html {
   grid-template-columns: 1fr auto;
   gap: 1.5rem;
   width: 100%;
+  min-height: 0; /* Ensure it can shrink if needed */
 }
 
 .project-row {
@@ -582,9 +587,11 @@ footer {
     padding: 1rem;
   }
 
-  .content-area {
+.content-area {
     margin-left: 0;
     padding: 15px;
+    overflow-y: auto; /* Enable scrolling on mobile */
+    max-height: calc(100vh - 30px); /* Adjust for mobile header/footer */
   }
 
   .container {
