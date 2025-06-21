@@ -482,6 +482,7 @@ footer {
   .project-header.right {
     justify-content: flex-end;
     margin-top: 0.5rem;
+    width: 100%; /* Ensure full width for right alignment */
   }
 
   .page-wrapper {
