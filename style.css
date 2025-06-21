@@ -146,6 +146,12 @@ html {
 /* =======================
    PROJECT SECTIONS
 ======================= */
+#projects {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+}
+
 .project {
   background-color: #fff;
   border-radius: 8px;
@@ -153,6 +159,7 @@ html {
   margin-bottom: 2.5rem;
   padding: 1rem 1.25rem;
   transition: box-shadow var(--transition-speed) ease;
+  display: contents;
 }
 
 .project:hover {
@@ -174,12 +181,13 @@ html {
   color: var(--text-color);
   user-select: none;
   transition: color var(--transition-speed) ease;
+  display: contents;
 }
 
 .project-header:hover,
 .project-header:focus {
   color: var(--primary-color);
-  outline: 2px solid var(--primary-color);
+  /*outline: 2px solid var(--primary-color);*/
 }
 
 .project-header a {
@@ -195,15 +203,22 @@ html {
 }
 
 .project-header.right {
+  grid-column: 2;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
+}
+
+.project-name {
+  grid-column: 1;
+  margin: 0;
 }
 
 .project-date {
   flex-shrink: 0;
   text-align: right;
   color: #666;
-  margin-right: 0.5;
+  margin-right: 0.5rem;
   white-space: nowrap;
   min-height: 0; /* Accessibility fix */
 }
