@@ -112,7 +112,7 @@ h3 {
 /* =======================
    NAVIGATION
 ======================= */
-nav {
+.top-nav {
   text-align: center;
   margin-bottom: 2.5rem;
   padding: 1rem 0;
@@ -121,7 +121,7 @@ nav {
   box-shadow: var(--shadow-light);
 }
 
-nav a {
+.top-nav a {
   margin: 0 1.5rem;
   text-decoration: none;
   color: var(--text-color);
@@ -130,8 +130,8 @@ nav a {
   transition: all var(--transition-speed) ease;
 }
 
-nav a:hover,
-nav a:focus {
+.top-nav a:hover,
+.top-nav a:focus {
   color: var(--primary-color);
   text-decoration: underline;
   outline: 2px solid var(--primary-color);
@@ -709,7 +709,7 @@ footer {
     font-size: 1.4rem;
   }
 
-  nav a {
+  .top-nav a {
     margin: 0 1rem;
   }
 }
