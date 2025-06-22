@@ -56,19 +56,103 @@
               <p>
                 This system controls the time of day, weather, sun, and moon transitions
                 in a dynamic world environment.
+
+                Each subsystem is responsible for a specific aspect of the world,
+                allowing for modular updates and easy integration with other systems.
               </p>
               <pre><code class="language-csharp">
 // DynamicWorldSystem.cs (snippet)
-public class DynamicWorldSystem : MonoBehaviour {
+public class DynamicWorldSystem : MonoBehaviour
+{
+    // Singleton instance of the DynamicWorldSystem
     public static DynamicWorldSystem Instance { get; private set; }
+
+    // Subsystems managing time of day and weather
     public TimeOfDaySystem timeOfDaySystem = new TimeOfDaySystem();
     public WeatherSystem weatherSystem = new WeatherSystem();
+    public MoonController moonController;
 
-    void Update() {
-        timeOfDaySystem.UpdateTime();
-        weatherSystem.UpdateWeather(timeOfDaySystem.CurrentTimeOfDay);
+    // Controls the sun light
+    public SunController sunController;
+
+    [Header("Sunlight Colours")]
+    public Color dawnColour = Color.red;
+    public Color middayColour = Color.white;
+
+    // Reference to the scene directional light (the sun)
+    [Header("Directional Light Reference (Ensure This Is Set)")]
+    [SerializeField] private Light sunLight;
+
+    //Reference to scene directional light (the moon)
+    [Header("Moon Light (Ensure This Is Set)")]
+    [SerializeField] private Light moonLight;
+    [Header("Moon Visual Model")]
+    [SerializeField] private GameObject moonMesh;
+
+    void Awake()
+    {
+        Instance = this;
+
+        // Singleton pattern enforcement
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        // Ensures this system persists across scene loading
+        DontDestroyOnLoad(gameObject);
+
+        if (sunLight == null)
+        {
+            Debug.LogError("DynamicWorldSystem: SunLight is not assigned! SunController will not work.");
+            return;
+        }
+
+        if (moonLight == null)
+        {
+            Debug.LogWarning("DynamicWorldSystem: MoonLight is not assigned! Nighttime lighting will not function.");
+        }
+
+        sunController = new SunController(sunLight);
+
+        moonController = new MoonController(moonLight, moonMesh);
+
     }
-}
+
+    private void Start()
+    {
+        timeOfDaySystem.CurrentTimeOfDay = 6f; //6am
+    }
+
+    void Update()
+    {
+        timeOfDaySystem.UpdateTime();
+
+        weatherSystem.UpdateWeather(timeOfDaySystem.CurrentTimeOfDay);
+
+        // Update the lighting based on current time, sunrise/sunset, and color gradients
+        sunController?.UpdateSun(
+            timeOfDaySystem.CurrentTimeOfDay,
+            timeOfDaySystem.sunriseTime,
+            timeOfDaySystem.sunsetTime,
+            dawnColour,
+            middayColour
+        );
+
+
+        // Update the moon based on current time
+        moonController.UpdateMoon(
+            timeOfDaySystem.CurrentTimeOfDay,
+            timeOfDaySystem.sunriseTime,
+            timeOfDaySystem.sunsetTime,
+            sunController.GetSunAngle(timeOfDaySystem.CurrentTimeOfDay)
+        );
+
+        //Debug.Log(timeOfDaySystem.GetFormattedTime());
+
+    }
+  }
               </code></pre>
             </div>
           </div>
