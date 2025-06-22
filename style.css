@@ -315,6 +315,10 @@ html {
   transform: rotate(180deg);
 }
 
+.about-text{
+  padding: 1rem;
+}
+
 /* =======================
    PROJECT CONTENT (collapsible)
 ======================= */
