@@ -88,7 +88,7 @@ public class DynamicWorldSystem : MonoBehaviour
     [Header("Moon Light (Ensure This Is Set)")]
     [SerializeField] private Light moonLight;
     [Header("Moon Visual Model")]
-    [SerializeField] private GameObject moonMesh;
+    [SerializeField] private GameObject moonMesh; 
 
     void Awake()
     {
@@ -162,7 +162,7 @@ public class DynamicWorldSystem : MonoBehaviour
           <div class="project-row">
             <div class="project-header collapsible">
               <div class="project-name">
-                <h3 id="time-of-day-system">Dynamic World System: Time of Day Subclass</h3>
+                <h3 id="time-of-day-system">Dynamic World System: Time of Day Class</h3>
               </div>
               <div class="project-header right">
                 <span class="project-date">June 2025</span>
@@ -216,6 +216,254 @@ public class TimeOfDaySystem
         return string.Format("{0:00}:{1:00}", hour, minutes); // Format as HH:MM
     }
 
+}
+              </code></pre>
+            </div>
+          </div>
+
+          <!-- Dynamic World System: Sun Controller -->
+          <div class="project-row">
+            <div class="project-header collapsible">
+              <div class="project-name">
+                <h3 id="sun-controller">Dynamic World System: Sun Controller Class</h3>
+              </div>
+              <div class="project-header right">
+                <span class="project-date">June 2025</span>
+                <span class="toggle-icon">▼</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <p>
+                This system controls the sun's position, rotation, and lighting based on the time of day.
+                It adjusts the sun's color and intensity during sunrise and sunset, and provides methods to get the sun's angle based on the current time.
+              </p>
+              <pre><code class="language-csharp">
+// DynamicWorldSystem.cs - Sun Controller Class
+public class SunController
+{
+    private Light directionalLight;
+
+    public SunController(Light sunLight)
+    {
+        if (sunLight == null)
+        {
+            Debug.LogError("SunController: Provided sunLight is null.");
+        }
+
+        directionalLight = sunLight;
+    }
+
+    public void UpdateSun(float timeOfDay, float sunriseTime, float sunsetTime, Color dawnColour, Color MiddayColour)
+    {
+
+        if (directionalLight == null)
+        {
+            Debug.LogError("SunController: Cannot update lighting as the directional light cannot be found.");
+            return;
+        }
+
+        // Calculate sun fade: 0 = night, 1 = day
+        float sunFade = DayNightHelper.CalculateSunFade(timeOfDay, sunriseTime, sunsetTime);
+
+        //Rotate the light to simulate sun movement
+        float sunAngle = (timeOfDay / 24f) * 360 - 90f;
+        directionalLight.transform.rotation = Quaternion.Euler(new Vector3(sunAngle, 170f, 0f));
+
+        directionalLight.enabled = sunFade > 0.01f;
+        directionalLight.intensity = Mathf.Lerp(0f, 1f, sunFade);
+        directionalLight.color = Color.Lerp(dawnColour, MiddayColour, sunFade); // Set dawnColour & middayColour in inspector
+    }
+
+    public float GetSunAngle(float timeOfDay)
+    {
+        return (timeOfDay / 24f) * 360 - 90f; 
+    }
+
+}
+              </code></pre>
+            </div>
+          </div>
+
+          <!-- Dynamic World System: Moon Controller -->
+          <div class="project-row">
+            <div class="project-header collapsible">
+              <div class="project-name">
+                <h3 id="moon-controller">Dynamic World System: Moon Controller Class</h3>
+              </div>
+              <div class="project-header right">
+                <span class="project-date">June 2025</span>
+                <span class="toggle-icon">▼</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <p>
+                This system...
+              </p>
+              <pre><code class="language-csharp">
+// DynamicWorldSystem.cs - Moon Controller Class
+[System.Serializable]
+public class MoonController
+{
+    private Light moonLight;
+    private GameObject moonMesh;
+
+    [SerializeField]
+    private float moonDistance = 5000f;
+
+    public MoonController(Light moonLight, GameObject moonVisual = null)
+    {
+        this.moonLight = moonLight;
+        this.moonMesh = moonVisual;
+    }
+
+    public void UpdateMoon(float timeOfDay, float sunriseTime, float sunsetTime, float sunAngle)
+    {
+        if (moonLight == null) return;
+
+        // Night defined as before sunrise or after sunset
+        bool isNight = timeOfDay < sunriseTime || timeOfDay > sunsetTime;
+
+        // Calculate night duration (handles crossing midnight)
+        float nightDuration = (sunriseTime + 24f - sunsetTime) % 24f;
+        float timeSinceSunset = (timeOfDay + 24f - sunsetTime) % 24f;
+        float nightProgress = Mathf.Clamp01(timeSinceSunset / nightDuration);
+
+        // Smooth continuous moon movement: from -10° at sunset, making a full arc across the sky to 350° at sunrise
+        float moonElevation = Mathf.Lerp(-10f, 350f, nightProgress);
+
+        // Use moonElevation as the X rotation angle for moon position
+        Quaternion moonRotation = Quaternion.Euler(moonElevation, 0f, 0f);
+        Vector3 moonDir = moonRotation * new Vector3 (0,0,-1);
+
+        // Calculate moon light intensity fade (inverse of sun fade)
+        float sunFade = DayNightHelper.CalculateSunFade(timeOfDay, sunriseTime, sunsetTime);
+        float moonFade = 1f - sunFade;
+
+        // Fully fade in moon during mid-night hours
+        if (isNight && (timeOfDay > sunsetTime + 1f || timeOfDay < sunriseTime - 1f))
+        {
+            moonFade = 1f;
+        }
+
+        moonLight.intensity = moonFade * 0.1f;
+        moonLight.enabled = moonFade > 0.01f;
+
+
+        // Only handle moon mesh if it's set
+        if (moonMesh != null)
+        {
+            moonMesh.SetActive(isNight);
+
+            if (isNight)
+            {
+                Vector3 cameraPos = Camera.main.transform.position;
+                Vector3 moonWorldPos = cameraPos + moonDir * moonDistance;
+
+                moonMesh.transform.position = moonWorldPos;
+                moonMesh.transform.LookAt(cameraPos); // Always face the camera
+
+                // Set moonlight to shine from the moon's position toward the camera/world
+                moonLight.transform.position = moonWorldPos;
+                moonLight.transform.rotation = Quaternion.LookRotation(cameraPos - moonWorldPos);
+            }
+        }
+        else
+        {
+            // If no mesh, just rotate the moonlight using calculated direction
+            moonLight.transform.rotation = Quaternion.LookRotation(-moonDir);
+        }
+
+
+    }
+}
+              </code></pre>
+            </div>
+          </div>
+
+                    <!-- Dynamic World System: Weather System -->
+          <div class="project-row">
+            <div class="project-header collapsible">
+              <div class="project-name">
+                <h3 id="weather-controller">Dynamic World System: Weather Controller Class</h3>
+              </div>
+              <div class="project-header right">
+                <span class="project-date">June 2025</span>
+                <span class="toggle-icon">▼</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <p>
+                This system...
+              </p>
+              <pre><code class="language-csharp">
+
+// DynamicWorldSystem.cs - Weather Controller Class
+[System.Serializable]
+public class WeatherController
+{
+    public enum WeatherType { Sunny, Rainy, Snowy }
+
+    public WeatherType CurrentWeather { get; private set; } = WeatherType.Sunny;
+
+    public void UpdateWeather(float currentTimeOfDay)
+    {
+        // Implement weather update logic here
+    }
+
+    public void SetWeather(WeatherType newWeather)
+    {
+        CurrentWeather = newWeather;
+        // Optionally notify listeners here
+    }
+}
+              </code></pre>
+            </div>
+          </div>
+
+          <!-- Dynamic World System: Day/Night Helper -->
+          <div class="project-row">
+            <div class="project-header collapsible">
+              <div class="project-name">
+                <h3 id="day-night-helper">Dynamic World System: Day/Night Helper Class</h3>
+              </div>
+              <div class="project-header right">
+                <span class="project-date">June 2025</span>
+                <span class="toggle-icon">▼</span>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <p>
+                This system 
+              </p>
+              <pre><code class="language-csharp">
+                
+// DynamicWorldSystem.cs - Day Night Helper Class
+public static class DayNightHelper
+{
+    // Calculates a fade value between 0 and 1 based on time of day and sunrise/sunset times
+    public static float CalculateSunFade(float timeOfDay, float sunriseTime, float sunsetTime)
+    {
+        if (timeOfDay >= sunriseTime && timeOfDay <= sunsetTime)
+        {
+            return 1f; // Daytime full brightness
+        }
+        else if (timeOfDay > sunsetTime && timeOfDay < sunsetTime + 1f)
+        {
+            return Mathf.InverseLerp(sunsetTime + 1f, sunsetTime, timeOfDay); // Fade out at sunset
+        }
+        else if (timeOfDay > sunriseTime - 1f && timeOfDay < sunriseTime)
+        {
+            return Mathf.InverseLerp(sunriseTime - 1f, sunriseTime, timeOfDay); // Fade in at sunrise
+        }
+        else
+        {
+            return 0f; // Night time
+        }
+    }
 }
               </code></pre>
             </div>
