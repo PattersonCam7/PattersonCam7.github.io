@@ -45,14 +45,14 @@ h1, h2, h3 {
    LAYOUT
 ======================= */
 .container {
-  margin: 0 auto;
-  padding: 25px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  box-shadow: var(--shadow-light);
-  width: 100%;
-  max-width: 1310px;
-  box-sizing: border-box;
+    margin: 0 auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 1510px;
+    box-sizing: border-box;
 }
 
 .page-wrapper {
