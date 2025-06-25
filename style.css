@@ -339,8 +339,6 @@ html {
   width: 100%; /* Ensure full width */
   padding: 1.5rem;
   background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: var(--shadow-light);
   transition: all var(--transition-speed) ease;
 }
 
