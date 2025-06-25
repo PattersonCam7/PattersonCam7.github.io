@@ -58,9 +58,8 @@
 
             <div class="project-content">
               <p class="description-text">
-              This script contains several classes, each responsible for managing a specific aspect of the dynamic world system. 
-              This organization allows for clear separation of concerns, making the system modular and easier to maintain. 
-              The design enables straightforward updates and seamless integration with other systems in Unity by simply copying the relevant scripts and assigning the necessary references in the inspector.
+              A singleton Unity manager that controls day/night cycles, weather, and sun/moon lighting. It updates time progression and environmental effects each frame, using modular subsystems for time, weather, and lighting. 
+              Designed with clear separation of concerns, it ensures maintainability and easy extension while providing realistic, dynamic world simulation.
               </p>
               <pre><code class="language-csharp">
 // DynamicWorldSystem.cs (snippet)
@@ -173,7 +172,13 @@ public class DynamicWorldSystem : MonoBehaviour
 
             <div class="project-content">
               <p class="description-text">
-                This system controls the time of day, which can be adjusted in engine through a slider or manually setting a float to match the hour of day.
+                TimeOfDaySystem manages the progression of time within the dynamic world, simulating a 24-hour day cycle. It allows the length of a full day to be set in seconds, enabling flexible time scaling for gameplay purposes.
+
+                The class tracks the current time of day (clamped between 0 and 24 hours) and updates it every frame based on real time. It also stores configurable sunrise and sunset times, which can be used by other systems to adjust lighting and environmental effects.
+
+                Additionally, it provides a formatted string representing the current time in “HH:MM” format, useful for UI display or debugging.
+
+                This encapsulated system abstracts time management, making it modular and easy to integrate with other environmental systems in the project.
               </p>
               <pre><code class="language-csharp">
 // DynamicWorldSystem.cs - Time Of Day Class
@@ -236,8 +241,11 @@ public class TimeOfDaySystem
 
             <div class="project-content">
               <p class="description-text">
-                This system controls the sun's position, rotation, and lighting based on the time of day.
-                It adjusts the sun's color and intensity during sunrise and sunset, and provides methods to get the sun's angle based on the current time.
+                SunController manages the sun’s lighting and rotation based on the time of day. It takes a directional light and updates its rotation to simulate the sun moving across the sky.
+
+                Using the DayNightHelper class, it calculates a sun fade value between 0 (night) and 1 (day) to smoothly adjust the sun’s brightness and color—from dawn to midday tones. The sun light is disabled during nighttime to improve performance.
+
+                This class encapsulates sun-specific behavior, making the lighting system modular and easy to maintain within the dynamic world environment.
               </p>
               <pre><code class="language-csharp">
 // DynamicWorldSystem.cs - Sun Controller Class
@@ -301,7 +309,11 @@ public class SunController
 
             <div class="project-content">
               <p class="description-text">
-                This system...
+                MoonController is a serializable class that controls the moon’s position, rotation, and light intensity based on the time of day. It smoothly moves the moon across the sky during the night, from just below the horizon at sunset to sunrise.
+
+The moonlight gets brighter as the sun fades, creating a natural day-to-night lighting transition. If there is a moon mesh assigned, it’s positioned to always face the player’s camera for better immersion. If not, only the moonlight rotates to simulate the moon’s movement.
+
+This class keeps moon-related logic separate and easy to update, making it simple to maintain and add new features within the dynamic world system.
               </p>
               <pre><code class="language-csharp">
 // DynamicWorldSystem.cs - Moon Controller Class
@@ -398,7 +410,8 @@ public class MoonController
 
             <div class="project-content">
               <p class="description-text">
-                This system...
+                WeatherController is a modular class responsible for managing and updating the current weather state within the dynamic world system. 
+                It encapsulates weather logic, allowing easy switching between defined weather types and supporting future expansion for dynamic weather behaviors.
               </p>
               <pre><code class="language-csharp">
 
@@ -440,7 +453,8 @@ public class WeatherController
 
             <div class="project-content">
               <p class="description-text">
-                This system 
+                DayNightHelper is a static utility class that calculates sun brightness as a normalized fade value between 0 and 1, based on the current time of day relative to sunrise and sunset. 
+                This enables smooth and dynamic lighting transitions to support realistic day/night cycles.
               </p>
               <pre><code class="language-csharp">
                 
