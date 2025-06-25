@@ -503,7 +503,8 @@ public static class DayNightHelper
             </div>
 
             <div class="project-content">
-              <p class="description-text">This script is used to track the current timer and calculate reductions in time when a coffee is picked up.</p>
+              <p class="description-text">A timer system made in Unity using C# that counts down during gameplay. The timer can change based on player actions like drinking coffee, which reduces the remaining time but keeps it above a minimum limit. 
+                It updates the timer display on the screen, handles what happens when time runs out, and works with player controls and sound effects to make the game more interactive.</p>
               <pre><code class="language-csharp">
 // CountdownTimer.cs (snippet)
 public class CountdownTimer : MonoBehaviour 
@@ -591,7 +592,9 @@ public class CountdownTimer : MonoBehaviour
             </div>
 
             <div class="project-content">
-              <p class="description-text">This script is used to detect when a coffee is picked up</p>
+              <p class="description-text">CoffeePickup is a Unity C# script that manages the interaction when the player collects a coffee item. 
+                Upon player collision, it triggers an audio cue, displays a UI message, and communicates with the game’s timer system to apply gameplay effects like reducing the countdown time. 
+                The script handles disabling and optionally destroying the pickup object after use to prevent repeated collection.</p>
               <pre><code class="language-csharp">
 // CoffeePickup.cs (snippet)
 public class CoffeePickup : MonoBehaviour
