@@ -38,7 +38,7 @@
         -->
 
         <h2>Code Examples</h2>
-        <p class="description-text">Click a section to expand and view the system breakdowns.</p>
+        <p class="description-text">This page highlights key code samples and systems I've developed.<br>Click a section to expand and view the code sample.</p>
         
         <h2>Dynamic World System</h2>
 
@@ -58,11 +58,9 @@
 
             <div class="project-content">
               <p class="description-text">
-                This is currently being developed for my active personal project. This system controls the time of day, weather, sun, and moon transitions
-                in a dynamic world environment. This system is designed to be modular and reusable, so it can be easily integrated into any other Unity project by copying the relevant scripts and assigning the required references in the inspector.
-
-                Each subsystem is responsible for a specific aspect of the world,
-                allowing for modular updates and easy integration with other systems.
+              This script contains several classes, each responsible for managing a specific aspect of the dynamic world system. 
+              This organization allows for clear separation of concerns, making the system modular and easier to maintain. 
+              The design enables straightforward updates and seamless integration with other systems in Unity by simply copying the relevant scripts and assigning the necessary references in the inspector.
               </p>
               <pre><code class="language-csharp">
 // DynamicWorldSystem.cs (snippet)
@@ -89,13 +87,13 @@ public class DynamicWorldSystem : MonoBehaviour
 
     //Reference to scene directional light (the moon)
     [Header("Moon Light (Ensure This Is Set)")]
-    [SerializeField] private Light moonLight;
-    [Header("Moon Visual Model")]
+    [SerializeField] private Light moonLight; 
+    [Header("Moon Visual Model")] 
     [SerializeField] private GameObject moonMesh; 
 
     void Awake()
     {
-        Instance = this;
+        Instance = this; 
 
         // Singleton pattern enforcement
         if (Instance != null && Instance != this)
