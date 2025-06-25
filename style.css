@@ -308,6 +308,13 @@ html {
   margin-top: -3.5rem;
 }
 
+.project-linktext {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
 .project-linktext a:hover,
 .project-linktext a:focus
 {
