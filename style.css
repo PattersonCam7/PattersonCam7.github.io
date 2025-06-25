@@ -451,7 +451,7 @@ html {
    VIDEO WRAPPER
 ======================= */
 .video-wrapper {
-  width: 400px; /* Set desired width */
+  width: 700px; /* Set desired width */
   aspect-ratio: 16 / 9; /* Maintain 16:9 ratio */
   overflow: hidden; /* Clip corners of iframe */
   border-radius: 10px;
